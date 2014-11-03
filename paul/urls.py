@@ -19,4 +19,7 @@ urlpatterns = patterns('',
     #REGISTRATION
     (r'^register/$', 'paul.views.register_user'),
     (r'^register_success/$', 'paul.views.register_success'),
+
+    #UPLOAD
+    url(r'^upload/$', 'paul.views.upload', name="upload"),
 )
