@@ -5,8 +5,8 @@ from django.contrib import auth
 from django.template import RequestContext
 from django.core.urlresolvers import reverse
 
-from forms import UploadFileForm
-from models import UploadFile
+from forms import *
+from models import *
 
 # HOME
 def home(request):
@@ -81,9 +81,9 @@ def upload(request):
             new_file = UploadFile(file=request.FILES['file'], user=request.user)
             new_file.save()
 
-            return HttpResponseRedirect('home')
+            return HttpResponseRedirect('/')
     else:
         form = UploadFileForm()
 
     data = {'form': form}
-    return render_to_response('upload/upload.html', data, context_instance=RequestContext(request))
+    return render_to_response('upload.html', data, context_instance=RequestContext(request))

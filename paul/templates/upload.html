@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{{% block content %}
+            {% load staticfiles %}
+           <!-- IMPORTANT enctype attribute! -->
+        <form class="dropzone" action="{% url "upload" %}" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+        </form>
+
+        <script src="{% static 'js/dropzone.js' %}"></script>
+
+
+{% endblock %}

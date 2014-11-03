@@ -7,6 +7,7 @@ admin.autodiscover()
 urlpatterns = patterns('',
     #HOME AND ADMIN
     url(r'^$', 'paul.views.home', name='home'),
+    url(r'^home/', 'paul.views.home', name='home'),
     url(r'^admin/', include(admin.site.urls)),
     
     #AUTHENTICATION
