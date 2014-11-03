@@ -1,13 +1,13 @@
 {% block index %}
 
     {% if not user.is_authenticated %}
-        <li><a href="/register/">Register</a></li>
+        <a href="/register/">Register</a>
     {% endif %}
 
     {% if not user.is_authenticated %}
-        <li><a href="/login/">Login</a></li>
+        <a href="/login/">Login</a>
     {% elif user.is_authenticated %}
-        <li><a href="/logout/">Logout</a></li>
+        <a href="/logout/">Logout</a>
     {% endif %}
 
 {% endblock %}
