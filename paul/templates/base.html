@@ -2,9 +2,6 @@
 
     {% if not user.is_authenticated %}
         <a href="/register/">Register</a>
-    {% endif %}
-
-    {% if not user.is_authenticated %}
         <a href="/login/">Login</a>
     {% elif user.is_authenticated %}
         <a href="/logout/">Logout</a>
