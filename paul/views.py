@@ -4,14 +4,14 @@ from django.core.context_processors import csrf
 from django.contrib import auth
 from django.template import RequestContext
 
-###########             HOME          ###########
+#HOME
 def home(request):
     if request.user.is_authenticated():
         return HttpResponseRedirect('/logged_in')
     else:
         return render_to_response('index.html', RequestContext(request))
 
-###########         AUTHENTICATION          ###########
+#AUTHENTICATION
 def login(request):
     if request.user.is_authenticated():
         return HttpResponseRedirect('/')
@@ -45,7 +45,7 @@ def logout(request):
     auth.logout(request)
     return HttpResponseRedirect('/')
 
-###########           REGISTER          ###########
+#REGISTER
 def register_user(request):
     if request.user.is_authenticated():
         return HttpResponseRedirect('/logged_in')
