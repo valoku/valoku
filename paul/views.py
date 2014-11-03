@@ -5,8 +5,8 @@ from django.contrib import auth
 from django.template import RequestContext
 from django.core.urlresolvers import reverse
 
-from forms import *
-from models import *
+from .forms import *
+from .models import *
 
 # HOME
 def home(request):
