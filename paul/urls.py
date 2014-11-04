@@ -26,5 +26,4 @@ urlpatterns = patterns('',
 
     #VIEW IMAGES
     (r'^images/$', 'paul.views.images'),
-    url(r'files/(?P<position_id>\d+)/$', 'skillcut.views.files'),
 )
