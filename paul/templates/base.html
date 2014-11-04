@@ -3,61 +3,50 @@
     <link rel="stylesheet" href="/static/css/paul.css"/>
 </head>
 <body>
-
-<div id="header"><h1>Paul!</h1>
-</div>
+{% block index %}
+    <div id="header">
+        {% if not user.is_authenticated %}
+            <a href="/register/">Register</a>
+            <a href="/login/">Login</a>
+        {% elif user.is_authenticated %}
+            <a href="/upload/">Upload</a>
+            <a href="/logout/">Logout</a>
+        {% endif %}
+    </div>
+{% endblock %}
 
 <hr>
 
 <div id="container">
 
-  <div id="center" class="column">
-  	{% block content %}
+    <div id="left" class="column">
+        This is left div
+    </div>
 
-    Content should be filled by child!
+    <div id="center" class="column">
 
-{% endblock %}
+        {% block content %}
 
-  </div>
-  
-  <div id="left" class="column">
-   </div>
+            Content should be filled by child!
+            welcome.html fills this eg
 
-  <div id="right" class="column">
-  	
-  {% if form.errors %}    
-        <p class='error'>Invalid auth</p>
-    {% endif %}
-    <div id="loginbody">
-        <form role="form" action="/auth/" method="post"> {% csrf_token %}
-            <h2 class="form-signin-heading">Login</h2>
-            <input type="text"  placeholder="Username" name="username" value="" id="username"
-                   required autofocus>
-            <br>
-            
-            <input type="password" placeholder="Password" required name="password" value=""    id="password"> 
-           <br>
-            <button type="submit">Sign in</button>  
-            <button type="button"><a href="/RestorePW/">Forgot Password?</a></button>
-            
-            <br>
-            <br>
-            Don't have an account? 
-            <button type="button"><a href="/register/">Register</a></button>
-        </form>
-  </div>
-</div>
-<br>
+        {% endblock %}
 
-<hr>
+    </div>
 
 
+    <div id="right" class="column">
+        This is right div
+    </div>
+    <br>
+
+    <hr>
 
 </div>
 
 <div id="footer">
 
-Copyright &copy; 2014 Niklas Nyholm & Aleksejs Mosans
+    Copyright &copy; 2014 Niklas Nyholm & Aleksejs Mosans
 
 </div>
 
