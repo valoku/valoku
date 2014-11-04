@@ -90,7 +90,7 @@ def upload(request):
 
 
 #IMAGES
-def images(request):
+def files(request):
     if request.method == 'GET':
         args = {}
         args.update(csrf(request))
