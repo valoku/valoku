@@ -7,14 +7,15 @@ body {
 
 
 #loginbody{
+	float:right;
+	display:inline-block;
 	background-color:;
 	text-align:center;
 	padding:10px;
-	position: fixed;
+	position: relative;
 	width: 170px;
 	Height: 300px;
-	right:0px;
-	top:220px;
+	right:-225px;
 	background-color: ;
 	border: solid black;
 	z-index: 999;
@@ -30,7 +31,8 @@ body {
 }
 
 #footer {
-		
+	margin-left:auto;
+	margin-right:auto;	
 text-align:center;
 color: #E6E6FA;
 position:relative;
@@ -45,16 +47,21 @@ width:100%;
           }
 
 #content {
-	width: 961px;
+	padding-top:0px;
+	padding-left:20px;
+	padding-right:20px;
+	padding-bottom:60px;
+	border:solid yellow;
+	width: 760px;
 	position:relative;
-
+	
 }
 
 #wrapper {
 border:solid black;
 margin: 25px auto 0 auto;
 position: static;
-width:900px;
+width:1004px;
 padding-left:auto;
 padding-right:auto;
 };
@@ -94,7 +101,7 @@ a {
 }
 
 
-#feedback { 
+/*#feedback { 
   height: 104px; 
   width: 104px; 
   position: fixed; 
@@ -125,4 +132,4 @@ a {
 
 #feedback a:hover { 
   background: #06c; 
-}
+}*/
