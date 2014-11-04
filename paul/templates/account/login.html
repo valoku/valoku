@@ -1,24 +1,36 @@
 {% extends 'base.html' %}
 
-    {% block content %}
+{% block content %}
+   <div id="left" class="column">
+        This is left div
+        </h1>
+    </div>
 
-        <!-- Custom styles for this template -->
-        {% if form.errors %}    
-            <p class='error'>Invalid auth</p>
-        {% endif %}
-        <div class="login-body">
-            <form role="form" action="/auth/" method="post"> {% csrf_token %}
-                <h2 class="form-signin-heading">Login</h2>
-                <input type="text" placeholder="Username" name="username" value="" id="username"
-                       required autofocus>
-                <br>
-                <input type="password" placeholder="Password" required name="password" value=""
-                       id="password">
-                <br>
-                <button type="submit">Sign in</button>
-                <br>
+    <div id="center" class="column">
+    <!-- Custom styles for this template -->
+    {% if form.errors %}
+        <p class='error'>Invalid auth</p>
+    {% endif %}
+    <div class="login-body">
+        <form role="form" action="/auth/" method="post"> {% csrf_token %}
+            <h2 class="form-signin-heading">Login</h2>
+            <input type="text" placeholder="Username" name="username" value="" id="username"
+                   required autofocus>
+            <br>
+            <input type="password" placeholder="Password" required name="password" value=""
+                   id="password">
+            <br>
+            <button type="submit">Sign in</button>
+            <br>
 
-                <a href="/register/">Register</a>
-            </form>
-        </div>
-    {% endblock %}
+            <a href="/register/">Register</a>
+        </form>
+    </div>
+    </div>
+
+
+    <div id="right" class="column">
+        This is right div
+    </div>
+    <br>
+{% endblock %}

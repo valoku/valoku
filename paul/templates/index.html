@@ -14,5 +14,29 @@ Cras sed erat molestie, fermentum mauris eget, mollis purus. Praesent eget cursu
 Curabitur id tortor nec neque faucibus porttitor. Sed dignissim vulputate ex, et semper nibh maximus et. Donec at mi libero. Proin vitae vehicula elit, vitae dictum sem. Morbi semper faucibus pulvinar. Ut id accumsan ipsum. Aenean ornare, libero id consectetur scelerisque, odio risus placerat turpis, ac interdum nibh turpis a massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Praesent quis elit eget libero condimentum porttitor a in purus. Proin laoreet est et mattis feugiat.
 
 Suspendisse mattis neque odio, ac tristique leo porta at. Etiam tincidunt eros euismod mi elementum, at tristique urna condimentum. Proin id efficitur nunc. Donec non est et tellus sollicitudin tempor vitae et ipsum. Mauris semper libero magna, ut vulputate lectus vestibulum nec. Aenean quis dignissim dolor, id imperdiet turpis. Nunc placerat dolor non tellus maximus, nec ornare velit mollis. Cras ex ipsum, eleifend a gravida non, aliquam nec lacus. Nunc varius nisl at dolor consectetur euismod. Aenean bibendum tempus tellus, a semper massa. Vestibulum quis arcu ligula.</p>
+<!-- Custom styles for this template -->
+   {% if form.errors %}    
+        <p class='error'>Invalid auth</p>
+    {% endif %}
+    <div id="loginbody">
+        <form role="form" action="/auth/" method="post"> {% csrf_token %}
+            <h2 class="form-signin-heading">Login</h2>
+            <input type="text"  placeholder="Username" name="username" value="" id="username"
+                   required autofocus>
+            <br>
+            
+            <input type="password" placeholder="Password" required name="password" value=""
+                   id="password">
+            <br>
+            <button type="submit">Sign in</button>
+            <!-- Added a Forgot Password button witha a restore password thingy haven't implemented functionality -->
+            <button type="button"><a href="/RestorePW/">Forgot Password?</a></button>
+            
+            <br>
+            <br>
+            Don't have an account? 
+             <button type="button"><a href="/register/">Register</a></button>
+        </form>
+    </div>
 
 {% endblock %}
