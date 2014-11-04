@@ -1,12 +1,14 @@
+import os
 from django.contrib.auth.forms import UserCreationForm
 from django.shortcuts import *
 from django.core.context_processors import csrf
 from django.contrib import auth
 from django.template import RequestContext
-from django.core.urlresolvers import reverse
+from django.utils.encoding import *
 
-from .forms import *
-from .models import *
+from paul.forms import *
+from paul.models import *
+from paul import settings
 
 # HOME
 def home(request):
@@ -90,10 +92,19 @@ def upload(request):
 
 
 #IMAGES
-def files(request):
+def images(request):
     if request.method == 'GET':
         args = {}
         args.update(csrf(request))
         args['images'] = UploadFile.objects.filter(user=request.user)
         return render_to_response("images.html", args)
     return 'hello'
+
+def files(request, path):
+    print('#########################################')
+    response = HttpResponse()
+    response['Content-Type'] = ''
+    images = UploadFile.objects.filter(user=request.user)
+    image = images.first()
+    response['X-Sendfile'] = smart_str((os.path.join(settings.FILES_DIR, path)))
+    return response

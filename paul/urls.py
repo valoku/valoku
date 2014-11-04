@@ -1,5 +1,4 @@
 from django.conf.urls import patterns, include, url
-from .views import *
 
 from django.contrib import admin
 admin.autodiscover()
@@ -26,4 +25,5 @@ urlpatterns = patterns('',
 
     #VIEW IMAGES
     (r'^images/$', 'paul.views.images'),
+    url(r'^files/(?P<path>.*)$', 'paul.views.files'),
 )
