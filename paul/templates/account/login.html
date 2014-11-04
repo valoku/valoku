@@ -1,12 +1,8 @@
 {% extends 'base.html' %}
 
 {% block content %}
-   <div id="left" class="column">
-        This is left div
-        </h1>
-    </div>
+   
 
-    <div id="center" class="column">
     <!-- Custom styles for this template -->
     {% if form.errors %}
         <p class='error'>Invalid auth</p>
@@ -26,11 +22,9 @@
             <a href="/register/">Register</a>
         </form>
     </div>
-    </div>
+    
 
 
-    <div id="right" class="column">
-        This is right div
-    </div>
+   
     <br>
 {% endblock %}

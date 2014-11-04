@@ -1,88 +1,102 @@
+
+
 body {
-	margin-top:0px;
-	margin-left:auto;
-	margin-right:auto;
-	background-color: pink;
+margin-top:0px;
+margin-left:auto;
+margin-right:auto;
+background-color: pink;
+padding-bottom:0px;
 }
 
 
-#loginbody{
-	float:right;
-	display:inline-block;
-	background-color:;
-	text-align:center;
-	padding:10px;
-	position: relative;
-	width: 170px;
-	Height: 300px;
-	right:-225px;
-	background-color: ;
-	border: solid black;
-	z-index: 999;
-}
+
 
 #header{
-	margin-left:auto;
-	margin-right:auto;
-	height:150px;
-	background-color: grey;
-	Text-Align: left;
+background-color: grey;
+min-width:1040px; /*adjust at the end*/
+margin-left:auto;
+margin-right:auto;
+height:100px;
+Text-Align: left;
 
 }
 
 #footer {
-	margin-left:auto;
-	margin-right:auto;	
+background-color:black;
+height:50px;
+min-width:1040px;  /*adjust at the end*/
+margin-left:auto;
+margin-right:auto;	
 text-align:center;
 color: #E6E6FA;
-position:relative;
-width:100%;
- background-color:black;
- bottom:0px;
- left:0px;
- bot:0px;
- color:red;  
- font-size: .75em;
- font-style: italic; 
-          }
-
-#content {
-	padding-top:0px;
-	padding-left:20px;
-	padding-right:20px;
-	padding-bottom:60px;
-	border:solid yellow;
-	width: 760px;
-	position:relative;
-	
 }
 
+
+
 #wrapper {
+
 border:solid black;
 margin: 25px auto 0 auto;
 position: static;
 width:1004px;
 padding-left:auto;
 padding-right:auto;
-};
-	
+
 }
+
+
+
+#content {
+border:solid orange;
+padding-top:0px;
+padding-left:50px;
+padding-right:50px;
+padding-bottom:50px;
+border:solid yellow;
+width: 760px;
+position:relative;
+
+}
+
+
+#loginbody{
+float:right;
+display:block;
+background-color:;
+text-align:center;
+padding:10px;
+position: relative;
+width: 170px;
+Height: 300px;
+right:-225px;
+background-color: ;
+border: solid black;
+z-index: 999;
+}
+
+
+
+
+
+
+
+
 
 
 
 a:visited {
-    text-decoration: none;
+text-decoration: none;
 }
 
 a:link {
-  color: black;
-  background-color: transparent;
-  text-decoration: ;
+color: black;
+background-color: transparent;
+text-decoration: ;
 }
 
 a:hover {
-  color: green ;
-  background-color: transparent ;
+color: green ;
+background-color: transparent ;
 }
 
 input  {
@@ -93,43 +107,45 @@ height: 25px;
 
 }
 button:hover {
-	color:green;
+color:green;
 }
 
 a {
-	text-decoration: none;
+text-decoration: none;
 }
+
+
 
 
 /*#feedback { 
-  height: 104px; 
-  width: 104px; 
-  position: fixed; 
-  top: 40%; 
-  z-index: 999;
-  transform: rotate(-90deg);
-  -webkit-transform: rotate(-90deg); 
-  -moz-transform: rotate(-90deg); 
-  -o-transform: rotate(-90deg); 
-  filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
+height: 104px; 
+width: 104px; 
+position: fixed; 
+top: 40%; 
+z-index: 999;
+transform: rotate(-90deg);
+-webkit-transform: rotate(-90deg); 
+-moz-transform: rotate(-90deg); 
+-o-transform: rotate(-90deg); 
+filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
 }
 
 #feedback a { 
-  display: block; 
-  background: #f00; 
-  height: 15px; 
-  width: 70px; 
-  padding: 8px 16px;
-  color: #fff; 
-  font-family: Arial, sans-serif; 
-  font-size: 17px; 
-  font-weight: bold; 
-  text-decoration: none; 
-  border-bottom: solid 1px #333;
-  border-left: solid 1px #333;
-  border-right: solid 1px #fff;
+display: block; 
+background: #f00; 
+height: 15px; 
+width: 70px; 
+padding: 8px 16px;
+color: #fff; 
+font-family: Arial, sans-serif; 
+font-size: 17px; 
+font-weight: bold; 
+text-decoration: none; 
+border-bottom: solid 1px #333;
+border-left: solid 1px #333;
+border-right: solid 1px #fff;
 }
 
 #feedback a:hover { 
-  background: #06c; 
+background: #06c; 
 }*/
