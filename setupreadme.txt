@@ -1,6 +1,7 @@
 IF YOU ARE ON 64BIT WINDOWS MAKE SURE *EVERYTHING* below is 64 bit
 
 -Install Python 2.7
+(if you already have 32 bit and on windows 64bit then remember to change path env)
 
 -Install Django 1.7
 
