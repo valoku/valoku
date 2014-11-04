@@ -1,74 +1,54 @@
-body {
-	margin-top:0px;
-	margin-left:auto;
-	margin-right:auto;
-	background-color: pink;
+/*body {
+margin-top:0px;
+margin-left:auto;
+margin-right:auto;
+background-color: pink;*/
 }
 
-
-#loginbody{
-	background-color:;
-	text-align:center;
-	padding:10px;
-	position: absolute;
-	width: 170px;
-	Height: 300px;
-	right:0px;
-	top:220px;
-	background-color: ;
-	border: solid black;
+/*#header{
+margin-left:auto;
+margin-right:auto;
+height:150px;
+background-color: grey;
+Text-Align: left; */
 }
 
-#header{
-	margin-left:auto;
-	margin-right:auto;
-	height:150px;
-	background-color: grey;
-	Text-Align: left;
+/*#footer {
 
-}
-
-
-
-#footer {
-		
 text-align:center;
 color: #E6E6FA;
- position:absolute;
- width:100%;
- background-color:black;
-  bottom:0px;
-  left:0px;
- color:red;  
-   font-size: .75em;
-                 font-style: italic; 
-          }
+position:absolute;
+width:100%;
+background-color:black;
+bottom:0px;
+left:0px;
+color:red;  
+font-size: .75em;
+font-style: italic; 
+}*/
 
-
-#content {
+#loginbody{
+background-color:blue;
+text-align:center;
+padding:10px;
+width: 170px;
+Height: 300px;
+border: solid black;
 }
-
-#wrapper {
-	margin-right:20%;
-	margin-left:20%;
-	
-}
-
-
 
 a:visited {
-    text-decoration: none;
+text-decoration: none;
 }
 
 a:link {
-  color: black;
-  background-color: transparent;
-  text-decoration: ;
+color: black;
+background-color: transparent;
+text-decoration: ;
 }
 
 a:hover {
-  color: green ;
-  background-color: transparent ;
+color: green ;
+background-color: transparent ;
 }
 
 input  {
@@ -79,9 +59,91 @@ height: 25px;
 
 }
 button:hover {
-	color:green;
+color:green;
 }
 
 a {
-	text-decoration: none;
+text-decoration: none;
 }
+
+
+body {
+margin:0px;
+min-width: 550px;         /* 2 x LC width + RC width */
+background-color: pink;
+
+}
+
+#container {
+height:100%;
+border: solid yellow;
+padding-left: 200px;      /* LC width */
+padding-right: 200px;     /* RC width */
+}
+
+#container .column {
+position: relative;
+float: left;
+}
+
+#center {
+border:solid black;
+width: 100%;
+}
+
+#left {
+border:green;
+width: 200px;             /* LC width */
+right: 200px;             /* LC width */
+margin-left: -100%;
+}
+
+#right {
+padding:10px 0;
+text-align: center;
+background: pink;
+border: solid black;
+width: 200px;             /* RC width */
+margin-right: -100%;
+}
+
+#footer {
+position:relative;
+text-align:center;
+color: #E6E6FA;
+width:100%;
+background-color:black;
+bottom:0px;
+left:0px;
+color:red;  
+font-size: 1em;
+font-style: italic; 
+}
+
+#header {
+
+padding: 10px 10px;	
+font-size: large;
+text-align: left;
+background:grey;
+
+}
+
+
+hr {
+	bprder-color:blue;
+	margin-bottom: 10px;
+	margin-top: 10px;
+}
+
+/*** IE6 Fix ***/
+* html #left {
+left: 150px;              /* RC width */
+}
+
+/*** Just for Looks ***/
+
+
+
+
+
