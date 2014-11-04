@@ -26,4 +26,4 @@ Include “F:/{path_to_paul_webapp}/apache/apache_django_wsgi.conf “
 
 -Create the file apache_django_wsgi.conf referenced above
 
--
+-Create files/ folder in django project root
