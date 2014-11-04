@@ -87,3 +87,13 @@ def upload(request):
 
     data = {'form': form}
     return render_to_response('upload.html', data, context_instance=RequestContext(request))
+
+
+#IMAGES
+def images(request):
+    if request.method == 'GET':
+        args = {}
+        args.update(csrf(request))
+        args['images'] = UploadFile.objects.filter(user=request.user)
+        return render_to_response("images.html", args)
+    return 'hello'

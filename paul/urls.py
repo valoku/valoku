@@ -23,4 +23,8 @@ urlpatterns = patterns('',
 
     #UPLOAD
     url(r'^upload/$', 'paul.views.upload', name="upload"),
+
+    #VIEW IMAGES
+    (r'^images/$', 'paul.views.images'),
+    url(r'files/(?P<position_id>\d+)/$', 'skillcut.views.files'),
 )
