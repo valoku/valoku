@@ -13,8 +13,12 @@ IF YOU ARE ON 64BIT WINDOWS MAKE SURE *EVERYTHING* below is 64 bit
 -install modwsgi by putting module in apache's installation's module directory 
 (eg. C:\Program Files (x86)\Apache Software Foundation\Apache2.2\modules)
 
--Add this line to http.conf file in the apache conf folder:
+-install xsendfile support for appache by putting module in apache's installation's module directory 
+win x64 binaries eg here: https://github.com/nmaier/mod_xsendfile/tree/master/bin/Apache24/Win64
+
+-Add these lines to http.conf file in the apache conf folder:
 LoadModule wsgi_module modules/mod_wsgi.so
+LoadModule xsendfile_module modules/mod_xsendfile.so
 
 -Add this line to http.conf file in the apache conf folder: 
 Include “F:/{path_to_paul_webapp}/apache/apache_django_wsgi.conf “

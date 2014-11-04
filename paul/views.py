@@ -90,10 +90,18 @@ def upload(request):
 
 
 #IMAGES
-def files(request):
+def images(request):
     if request.method == 'GET':
         args = {}
         args.update(csrf(request))
         args['images'] = UploadFile.objects.filter(user=request.user)
         return render_to_response("images.html", args)
     return 'hello'
+
+def files(request):
+    response = HttpResponse()
+    response['Content-Type'] = ''
+    images = UploadFile.objects.filter(user=request.user)
+    image = images.first();
+    response['X-Sendfile'] = (image.url.encode('utf-8'))
+    return response

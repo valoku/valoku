@@ -26,4 +26,5 @@ urlpatterns = patterns('',
 
     #VIEW IMAGES
     (r'^images/$', 'paul.views.images'),
+    url(r'^files/(?P<path>.*)$', 'views.media_xsendfile'),
 )
