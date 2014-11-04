@@ -3,8 +3,15 @@
     <link rel="stylesheet" href="/static/css/paul.css"/>
 </head>
 <body>
-{% block index %}
 
+<div id="header">
+<h1>Paul!</h1>
+</div>
+
+
+<div id="wrapper">
+
+   <!--{% block index %}
     {% if not user.is_authenticated %}
         <a href="/register/">Register</a>
         <a href="/login/">Login</a>
@@ -12,14 +19,55 @@
         <a href="/upload/">Upload</a>
         <a href="/logout/">Logout</a>
     {% endif %}
+{% endblock %}-->
 
-{% endblock %}
-
+<div id="content">
 {% block content %}
 
     Content should be filled by child!
 
 {% endblock %}
+</div>
+  <!-- Custom styles for this template -->
+    {% if form.errors %}    
+        <p class='error'>Invalid auth</p>
+    {% endif %}
+    <div id="loginbody">
+        <form role="form" action="/auth/" method="post"> {% csrf_token %}
+            <h2 class="form-signin-heading">Login</h2>
+            <input type="text"  placeholder="Username" name="username" value="" id="username"
+                   required autofocus>
+            <br>
+            
+            <input type="password" placeholder="Password" required name="password" value=""
+                   id="password">
+            <br>
+            <button type="submit">Sign in</button>
+            <!-- Added a Forgot Password button witha a restore password thingy haven't implemented functionality -->
+            <button type="button"><a href="/RestorePW/">Forgot Password?</a></button>
+            
+            <br>
+            <br>
+            Don't have an account? 
+             <button type="button"><a href="/register/">Register</a></button>
+        </form>
+    </div>
+
+<!-- behaves weird somehow has margins of a wrapper even though it doesnt belong to it-->
+
+<div id="footer">
+<div class="wrap"> Copyright &copy; 2014 Niklas Nyholm & Aleksejs Mosans
+
+</div>
+</div>
+
+
+
+
+
+
+
+
 
 </body>
 </html>
