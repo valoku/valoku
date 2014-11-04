@@ -1,10 +1,12 @@
+h2{color:#CCCCCC;}
+
 
 
 body {
 margin-top:0px;
 margin-left:auto;
 margin-right:auto;
-background-color: pink;
+background-color: #333333;
 padding-bottom:0px;
 }
 
@@ -12,7 +14,7 @@ padding-bottom:0px;
 
 
 #header{
-background-color: grey;
+background-color: #FFFFFF;
 min-width:1040px; /*adjust at the end*/
 margin-left:auto;
 margin-right:auto;
@@ -22,6 +24,8 @@ Text-Align: left;
 }
 
 #footer {
+border-top:solid red thin;
+border-bottom:solid black thin;
 background-color:black;
 height:50px;
 min-width:1040px;  /*adjust at the end*/
@@ -35,26 +39,29 @@ color: #E6E6FA;
 
 #wrapper {
 
-border:solid black;
+/*border:solid black;*/
 margin: 25px auto 0 auto;
 position: static;
-width:1004px;
-padding-left:auto;
-padding-right:auto;
+width:900px;
+padding-left:60px;
+padding-right:60px;
 
 }
 
 
 
 #content {
-border:solid orange;
+margin-left:auto;
+margin-right:auto;
+border:solid #CCCCCC;
+border-radius:10px;
 padding-top:0px;
 padding-left:50px;
 padding-right:50px;
 padding-bottom:50px;
-border:solid yellow;
 width: 760px;
-position:relative;
+position:static;
+background-color:#8C3130;
 
 }
 
@@ -62,18 +69,17 @@ position:relative;
 #loginbody{
 float:right;
 display:block;
-background-color:;
+background-color: #5F5F5F;
 text-align:center;
 padding:10px;
 position: relative;
 width: 170px;
 Height: 300px;
 right:-225px;
-background-color: ;
-border: solid black;
+border: solid #CCCCCC;
 z-index: 999;
+border-radius: 10px;
 }
-
 
 
 
@@ -117,11 +123,12 @@ text-decoration: none;
 
 
 
-/*#feedback { 
+#feedback { 
 height: 104px; 
 width: 104px; 
 position: fixed; 
-top: 40%; 
+top: 40%;
+left:0px;
 z-index: 999;
 transform: rotate(-90deg);
 -webkit-transform: rotate(-90deg); 
@@ -130,7 +137,7 @@ transform: rotate(-90deg);
 filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
 }
 
-#feedback a { 
+/*#feedback a { 
 display: block; 
 background: #f00; 
 height: 15px; 
