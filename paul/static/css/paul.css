@@ -103,7 +103,7 @@ text-decoration: ;
 }
 
 a:hover {
-color: green ;
+
 background-color: transparent ;
 }
 
@@ -123,6 +123,10 @@ button:active {
 	top:1px;
 }
 
+a:visited{
+	text-decoration: none;
+	color:#00000b;
+}
 a {
 text-decoration: none;
 }
