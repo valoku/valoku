@@ -1,13 +1,15 @@
 h2{color:#CCCCCC;}
 
-
+html {height:100%;}
 
 body {
+margin-bottom:0px	;	
 margin-top:0px;
 margin-left:auto;
 margin-right:auto;
 background-color: #333333;
 padding-bottom:0px;
+height:100%;
 }
 
 
@@ -24,9 +26,9 @@ Text-Align: left;
 }
 
 #footer {
-border-top:solid red thin;
+border-top:solid white thin;
 border-bottom:solid black thin;
-background-color:black;
+background-color:#0C5149;
 height:50px;
 min-width:1040px;  /*adjust at the end*/
 margin-left:auto;
@@ -40,7 +42,8 @@ color: #E6E6FA;
 #wrapper {
 
 /*border:solid black;*/
-margin: 25px auto 0 auto;
+min-height:100%;
+margin: 25px auto -50px /*forces*/ auto;
 position: static;
 width:900px;
 padding-left:60px;
@@ -83,11 +86,10 @@ border-radius: 10px;
 
 
 
-
-
-
-
-
+.footer {
+	height:50px;
+	clear:both;
+			}
 
 
 a:visited {
