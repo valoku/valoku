@@ -10,6 +10,7 @@ from paul.forms import *
 from paul.models import *
 from paul import settings
 
+
 # HOME
 def home(request):
     if request.user.is_authenticated():
@@ -101,10 +102,12 @@ def images(request):
     return 'hello'
 
 def files(request, path):
-    print('#########################################')
-    response = HttpResponse()
-    response['Content-Type'] = ''
-    images = UploadFile.objects.filter(user=request.user)
-    image = images.first()
-    response['X-Sendfile'] = smart_str((os.path.join(settings.FILES_DIR, path)))
-    return response
+    path = smart_str((os.path.join(settings.FILES_DIR, path)))
+    # print('#########################################')
+    # response = HttpResponse()
+    # response['Content-Type'] = ''
+    # images = UploadFile.objects.filter(user=request.user)
+    # image = images.first()
+    # response['X-Sendfile'] = smart_str((os.path.join(settings.FILES_DIR, path)))
+    # return response
+    return sendfile(request, path)

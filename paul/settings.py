@@ -111,3 +111,9 @@ HAYSTACK_CONNECTIONS = {
 }
 
 HAYSTACK_SIGNAL_PROCESSOR = 'haystack.signals.RealtimeSignalProcessor'
+
+#File serving stuff should be changed for prod
+SENDFILE_ROOT = FILES_DIR
+SENDFILE_URL = '/files'
+#SENDFILE_BACKEND = 'sendfile.backends.xsendfile'
+SENDFILE_BACKEND = 'sendfile.backends.development'
