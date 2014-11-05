@@ -8,11 +8,11 @@
     <div id="loginbody">
         <form role="form" action="/auth/" method="post"> {% csrf_token %}
             <h2 class="form-signin-heading">Login</h2>
-            <input type="text"  placeholder="Username" name="username" value="" id="username"
+            <input style="margin-left:auto; margin-right:auto;" type="text"  placeholder="Username" name="username" value="" id="username"
                    required autofocus>
             <br>
             
-            <input type="password" placeholder="Password" required name="password" value=""
+            <input style="margin-left:auto; margin-right:auto;" type="password" placeholder="Password" required name="password" value=""
                    id="password">
             <br>
             <button class="floatleft small" type="submit">Sign in</button>
@@ -24,7 +24,7 @@
             
 
             <!-- Added a Forgot Password button witha a restore password thingy haven't implemented functionality -->
-            <button type="button"><a href="/RestorePW/">Forgot Password?</a></button>
+            <button  type="button" ><a href="/RestorePW/">Forgot Password?</a></button>
             
             
             
