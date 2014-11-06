@@ -4,11 +4,12 @@
 
     {% load thumbnail %}
 
-    {% for myImage in images %}
-        <!--<img src = "/../{{image.file.url}}">-->
-        {% thumbnail myImage.file "100x100" crop="center" as im %}
-            <img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}">
-        {% endthumbnail %}
-    {% endfor %}
+        {% for myImage in images %}
+            <div class="large-3 medium-3 columns paul-thumbnail">
+                {% thumbnail myImage.file "150x150" crop="center" as im %}
+                    <img src="{{ im.url }}" width="100%" height="100%">
+                {% endthumbnail %}
+            </div>
+        {% endfor %}
 
 {% endblock %}
