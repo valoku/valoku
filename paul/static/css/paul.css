@@ -1,3 +1,77 @@
+h2 {
+    color: #CCCCCC;
+}
+
+body {
+    background-color: #333333;
+}
+
+#header {
+    background-color: #CCCCCC;
+}
+
+#footer {
+    border-top: solid white thin;
+    border-bottom: solid black thin;
+    background-color: #0C5149;
+    color: #E6E6FA;
+}
+
+#content {
+    overflow: auto;
+    border: solid #CCCCCC;
+    border-radius: 10px;
+    background-color: #8C3130;
+}
+
+#loginbody {
+    background-color: #5F5F5F;
+    border: solid #CCCCCC;
+    border-radius: 10px;
+}
+
+a:visited {
+    text-decoration: none;
+}
+
+a:link {
+    color: black;
+    background-color: transparent;
+    text-decoration:;
+}
+
+a:hover {
+
+    background-color: transparent;
+}
+
+input {
+    border: 1px solid #999;
+}
+
+button:hover {
+    background-color: #CCCCCC;
+}
+
+a:visited {
+    text-decoration: none;
+    color: #00000b;
+}
+
+a {
+    text-decoration: none;
+}
+
 button {
-    
+
+
+    border-radius: 22px;
+    border: thin solid #05f5f5;
+
+    cursor: pointer;
+    color: #00000b;
+    font-family: arial;
+    font-size: 14px;
+
+    text-decoration: none;
 }

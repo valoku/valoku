@@ -47,11 +47,13 @@
 
 <div class="row">
     <div class="large-12 columns">
-        {% block content %}
+        <div id="content">
+            {% block content %}
 
-            Content should be filled by child!
+                Content should be filled by child!
 
-        {% endblock %}
+            {% endblock %}
+        </div>
     </div>
 </div>
 
