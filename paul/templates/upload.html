@@ -7,7 +7,7 @@
     <form id="myDropzone" class="dropzone" action="{% url "upload" %}" method="post" enctype="multipart/form-data">
         {% csrf_token %}
     </form>
-    <button id="submit-all">
+    <button id="submit-all" class="button right">
         Submit all files
     </button>
     <script src="{% static 'js/dropzone.js' %}"></script>
