@@ -16,9 +16,9 @@ from sendfile import sendfile
 # HOME
 def home(request):
     if request.user.is_authenticated():
-        return HttpResponseRedirect('/logged_in')
+        return render_to_response('home.html', context_instance=RequestContext(request))
     else:
-        return render_to_response('index.html', RequestContext(request))
+        return HttpResponseRedirect('/login')
 
 
 #AUTHENTICATION
@@ -43,8 +43,7 @@ def auth_view(request):
 
 
 def logged_in(request):
-    return render_to_response('account/loggedin.html',
-                              context_instance=RequestContext(request))
+    return HttpResponseRedirect('/home')
 
 
 def invalid_login(request):
