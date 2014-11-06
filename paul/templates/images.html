@@ -1,8 +1,14 @@
-{% load thumbnail %}
+{% extends 'base.html' %}
 
-{% for myImage in images %}
-    <!--<img src = "/../{{image.file.url}}">-->
-{% thumbnail myImage.file "100x100" crop="center" as im %}
-    <img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}">
-{% endthumbnail %}
-{% endfor %}
+{% block content %}
+
+    {% load thumbnail %}
+
+    {% for myImage in images %}
+        <!--<img src = "/../{{image.file.url}}">-->
+        {% thumbnail myImage.file "100x100" crop="center" as im %}
+            <img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}">
+        {% endthumbnail %}
+    {% endfor %}
+
+{% endblock %}
