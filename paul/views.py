@@ -85,11 +85,9 @@ def upload(request):
         if form.is_valid():
             new_file = UploadFile(file=request.FILES['file'], user=request.user)
             new_file.save()
-
             return HttpResponseRedirect('/')
     else:
         form = UploadFileForm()
-
     data = {'form': form}
     return render_to_response('upload.html', data, context_instance=RequestContext(request))
 
@@ -100,7 +98,7 @@ def images(request):
         args = {}
         args.update(csrf(request))
         args['images'] = UploadFile.objects.filter(user=request.user)
-        return render_to_response("images.html", args)
+        return render_to_response("images.html", args, context_instance=RequestContext(request))
     return 'hello'
 
 
@@ -108,7 +106,7 @@ def files(request, path):
     url = "files/"+path
     requested_file_query_set = UploadFile.objects.filter(file=url)
     requested_file = list(requested_file_query_set)[0]
-    if (requested_file.user == request.user):
+    if requested_file.user == request.user:
         path = smart_str(os.path.join(settings.FILES_DIR, path))
         return sendfile(request, path)
     else:
