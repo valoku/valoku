@@ -5,6 +5,7 @@ from django.core.context_processors import csrf
 from django.contrib import auth
 from django.template import RequestContext
 from django.utils.encoding import *
+from django.core.exceptions import PermissionDenied
 
 from paul.forms import *
 from paul.models import *
@@ -102,13 +103,13 @@ def images(request):
         return render_to_response("images.html", args)
     return 'hello'
 
+
 def files(request, path):
-    path = smart_str((os.path.join(settings.FILES_DIR, path)))
-    # print('#########################################')
-    # response = HttpResponse()
-    # response['Content-Type'] = ''
-    # images = UploadFile.objects.filter(user=request.user)
-    # image = images.first()
-    # response['X-Sendfile'] = smart_str((os.path.join(settings.FILES_DIR, path)))
-    # return response
-    return sendfile(request, path)
+    url = "files/"+path
+    requested_file_query_set = UploadFile.objects.filter(file=url)
+    requested_file = list(requested_file_query_set)[0]
+    if (requested_file.user == request.user):
+        path = smart_str(os.path.join(settings.FILES_DIR, path))
+        return sendfile(request, path)
+    else:
+        raise PermissionDenied()
