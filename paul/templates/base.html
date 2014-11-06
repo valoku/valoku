@@ -1,58 +1,64 @@
 <html>
 <head>
     <title>paul</title>
-    <!--<link rel="stylesheet" href="/static/css/paul.css"/>-->
-    <link rel="stylesheet" href="/static/css/foundation.css" />
+    <link rel="stylesheet" href="/static/css/foundation.css"/>
     <script src="/static/js/vendor/modernizr.js"></script>
+    <link rel="stylesheet" href="/static/css/paul.css"/>
 </head>
 <body>
 
-  <nav class="top-bar" data-topbar role="navigation">
-      <ul class="title-area">
+<!-- Top bar starts-->
+<nav class="top-bar" data-topbar role="navigation">
+    <ul class="title-area">
         <li class="name">
-          <h1><a href="#">Paul</a></h1>
-      </li>
-      <!-- Remove the class "menu-icon" to get rid of menu icon. Take out "Menu" to just have icon alone -->
-      <li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
-  </ul>
-  <section class="top-bar-section">
-    <!-- Right Nav Section -->
-    <ul class="right">
-        {% if not user.is_authenticated %}
-        <li class=""><a href="/register/">Register</a></li>
-        <li class=""><a href="/login/">Login</a></li>
-        {% elif user.is_authenticated %}
-        <li class=""><a href="/images/">Images</a></li>
-        <li class=""><a href="/upload/">Upload</a></li>
-        <li class=""><a href="/logout/">Logout</a></li>
-        {% endif %}
-        <li class="has-dropdown">
-            <a href="#">Right Button Dropdown</a>
-            <ul class="dropdown">
-              <li><a href="#">First link in dropdown</a></li>
-              <li class="active"><a href="#">Active link in dropdown</a></li>
-          </ul>
-      </li>
-  </ul>
+            <h1><a href="#">Paul</a></h1>
+        </li>
+        <!-- Remove the class "menu-icon" to get rid of menu icon. Take out "Menu" to just have icon alone -->
+        <li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
+    </ul>
+    <section class="top-bar-section">
+        <!-- Right Nav Section -->
+        <ul class="right">
+            {% if not user.is_authenticated %}
+                <li class=""><a href="/register/">Register</a></li>
+                <li class=""><a href="/login/">Login</a></li>
+            {% elif user.is_authenticated %}
+                <li class=""><a href="/images/">Images</a></li>
+                <li class=""><a href="/upload/">Upload</a></li>
+                <li class=""><a href="/logout/">Logout</a></li>
+            {% endif %}
+            <li class="has-dropdown">
+                <a href="#">Right Button Dropdown</a>
+                <ul class="dropdown">
+                    <li><a href="#">First link in dropdown</a></li>
+                    <li class="active"><a href="#">Active link in dropdown</a></li>
+                </ul>
+            </li>
+        </ul>
 
-  <!-- Left Nav Section -->
-  <ul class="left">
-      <li><a href="#">Left Nav Button</a></li>
-  </ul>
-</section>
+        <!-- Left Nav Section -->
+        <ul class="left">
+            <li><a href="#">Left Nav Button</a></li>
+        </ul>
+    </section>
 </nav>
+<!-- Top bar ends-->
+
+
 <div class="row">
-    {% block content %}
+    <div class="large-12 columns">
+        {% block content %}
 
-    Content should be filled by child!
+            Content should be filled by child!
 
-    {% endblock %}
+        {% endblock %}
+    </div>
 </div>
 
 <script src="/static/js/vendor/jquery.js"></script>
 <script src="/static/js/foundation.min.js"></script>
 <script>
-$(document).foundation();
+    $(document).foundation();
 </script>
 </body>
 </html>

@@ -1,46 +1,45 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<!--Index.html content here -->
- {% if form.errors %}    
+    <!--Index.html content here -->
+    {% if form.errors %}
         <p class='error'>Invalid auth</p>
     {% endif %}
-    <div id="loginbody">
-        <form role="form" action="/auth/" method="post"> {% csrf_token %}
-            <h2 class="form-signin-heading">Login</h2>
-            <input style="margin-left:auto; margin-right:auto;" type="text"  placeholder="Username" name="username" value="" id="username"
-                   required autofocus>
-            <br>
-            
-            <input style="margin-left:auto; margin-right:auto;" type="password" placeholder="Password" required name="password" value=""
-                   id="password">
-            <br>
-            <button class="floatleft small" type="submit">Sign in</button>
-            
-            <button class="floatright small" type="button"><a href="/register/">Register</a></button>
-            <br>
-            <br>
-            <br>
-            
+    <div class="large-8 medium-8 columns">
+        <h1> Meet le Paul </h1>
 
-            <!-- Added a Forgot Password button witha a restore password thingy haven't implemented functionality -->
-            <button  type="button" ><a href="/RestorePW/">Forgot Password?</a></button>
-            
-            
-            
-             
-        </form>
+        <h2>
+            <p>Meet le Paul! Le Paul is blah blah blah blah blah</p>
+
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur metus lorem, lacinia accumsan lorem
+                vitae, venenatis rhoncus massa. Nullam efficitur, leo vitae fringilla suscipit, ex ligula maximus neque,
+                sed posuere risus nisl in dolor. Nullam ligula nibh, vulputate id vestibulum et, ullamcorper sit amet
+                magna. Cras non euismod odio. Fusce eget ultrices risus. Duis massa risus, placerat ornare commodo ac,
+                molestie a mi. Sed condimentum eu felis non bibendum. Maecenas felis urna, lobortis quis consequat sit
+                amet, laoreet eget orci. Nunc arcu mauris, eleifend in mauris ut, fermentum efficitur neque. In cursus
+                volutpat ante, nec consequat erat.
+
+                Donec ut nulla est. Integer porttitor, elit et volutpat consequat, ex felis porttitor augue, vel
+                fermentum odio tortor vel felis. Vivamus est tellus, dignissim in vehicula in, iaculis at massa. Mauris
+                id quam quis diam sodales lobortis. Donec a ornare diam. In hendrerit turpis ut mi egestas, sit amet
+                aliquam erat rutrum. Proin ult.</p>
+        </h2>
     </div>
-
-
-<h1> Meet le Paul </h1>
-
-<hr>
-<h2>
-    <p>Meet le Paul! Le Paul is blah blah blah blah blah</p>
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur metus lorem, lacinia accumsan lorem vitae, venenatis rhoncus massa. Nullam efficitur, leo vitae fringilla suscipit, ex ligula maximus neque, sed posuere risus nisl in dolor. Nullam ligula nibh, vulputate id vestibulum et, ullamcorper sit amet magna. Cras non euismod odio. Fusce eget ultrices risus. Duis massa risus, placerat ornare commodo ac, molestie a mi. Sed condimentum eu felis non bibendum. Maecenas felis urna, lobortis quis consequat sit amet, laoreet eget orci. Nunc arcu mauris, eleifend in mauris ut, fermentum efficitur neque. In cursus volutpat ante, nec consequat erat.
-
-Donec ut nulla est. Integer porttitor, elit et volutpat consequat, ex felis porttitor augue, vel fermentum odio tortor vel felis. Vivamus est tellus, dignissim in vehicula in, iaculis at massa. Mauris id quam quis diam sodales lobortis. Donec a ornare diam. In hendrerit turpis ut mi egestas, sit amet aliquam erat rutrum. Proin ult.</p>
-</h2>
-
+    <div class="large-4 medium-4 columns">
+        <div id="loginbody">
+            <form role="form" action="/auth/" method="post"> {% csrf_token %}
+                <h1 class="form-signin-heading">Login</h1>
+                <input type="text" placeholder="Username"
+                       name="username" value="" id="username"
+                       required autofocus>
+                <input type="password" placeholder="Password" required
+                       name="password" value=""
+                       id="password">
+                <button type="submit">Sign in</button>
+                <button type="button"><a href="/register/">Register</a></button>
+                <!-- Added a Forgot Password button witha a restore password thingy haven't implemented functionality -->
+                <br><a href="#">Forgot Password?</a>
+            </form>
+        </div>
+    </div>
 {% endblock %}
