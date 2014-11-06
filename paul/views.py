@@ -113,3 +113,8 @@ def files(request, path):
         return sendfile(request, path)
     else:
         raise PermissionDenied()
+
+
+def cache(request, path):
+    path = smart_str(os.path.join(settings.CACHE_DIR, path))
+    return sendfile(request, path)

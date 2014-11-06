@@ -1,2 +1,4 @@
 django==1.7.1
 django-xsendfile==1.0
+sorl-thumbnail==11.12.1b
+Pillow==2.3.0

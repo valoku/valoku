@@ -1,3 +1,8 @@
-{% for image in images %}
-    <img src = "/../{{image.file.url}}">
+{% load thumbnail %}
+
+{% for myImage in images %}
+    <!--<img src = "/../{{image.file.url}}">-->
+{% thumbnail myImage.file "100x100" crop="center" as im %}
+    <img src="{{ im.url }}" width="{{ im.width }}" height="{{ im.height }}">
+{% endthumbnail %}
 {% endfor %}
