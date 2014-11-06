@@ -1,54 +1,58 @@
 <html>
 <head>
-    <link rel="stylesheet" href="/static/css/paul.css"/>
-    
+    <title>paul</title>
+    <!--<link rel="stylesheet" href="/static/css/paul.css"/>-->
+    <link rel="stylesheet" href="/static/css/foundation.css" />
+    <script src="/static/js/vendor/modernizr.js"></script>
 </head>
 <body>
 
-<div id="header">
-<h1>Paul!</h1>
- {% block index %}
-    {% if not user.is_authenticated %}
-        <a href="/register/">Register</a>
-        <a href="/login/">Login</a>
-    {% elif user.is_authenticated %}
-        <a href="/images/">Images</a>
-        <a href="/upload/">Upload</a>
-        <a href="/logout/">Logout</a>
-    {% endif %}
-{% endblock %}
-</div>
+  <nav class="top-bar" data-topbar role="navigation">
+      <ul class="title-area">
+        <li class="name">
+          <h1><a href="#">Paul</a></h1>
+      </li>
+      <!-- Remove the class "menu-icon" to get rid of menu icon. Take out "Menu" to just have icon alone -->
+      <li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
+  </ul>
+  <section class="top-bar-section">
+    <!-- Right Nav Section -->
+    <ul class="right">
+        {% if not user.is_authenticated %}
+        <li class=""><a href="/register/">Register</a></li>
+        <li class=""><a href="/login/">Login</a></li>
+        {% elif user.is_authenticated %}
+        <li class=""><a href="/images/">Images</a></li>
+        <li class=""><a href="/upload/">Upload</a></li>
+        <li class=""><a href="/logout/">Logout</a></li>
+        {% endif %}
+        <li class="has-dropdown">
+            <a href="#">Right Button Dropdown</a>
+            <ul class="dropdown">
+              <li><a href="#">First link in dropdown</a></li>
+              <li class="active"><a href="#">Active link in dropdown</a></li>
+          </ul>
+      </li>
+  </ul>
 
-
-<div id="wrapper">
-
-
-  
-<!--<div id="feedback">
-  <a href="/feedback_url/">feedback</a>
-</div>-->
-
-<div id="content">
-{% block content %}
+  <!-- Left Nav Section -->
+  <ul class="left">
+      <li><a href="#">Left Nav Button</a></li>
+  </ul>
+</section>
+</nav>
+<div class="row">
+    {% block content %}
 
     Content should be filled by child!
 
-{% endblock %}
+    {% endblock %}
 </div>
- 
 
-
-</div>
-<div id="footer" class="footer">
-Footer
-
-
-</div> 
-
-
-
-
-
-
+<script src="/static/js/vendor/jquery.js"></script>
+<script src="/static/js/foundation.min.js"></script>
+<script>
+$(document).foundation();
+</script>
 </body>
 </html>
