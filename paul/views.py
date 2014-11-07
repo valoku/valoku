@@ -13,7 +13,7 @@ from paul import settings
 
 from sendfile import sendfile
 
-# HOME
+
 def home(request):
     if request.user.is_authenticated():
         return render_to_response('home.html', context_instance=RequestContext(request))
@@ -55,7 +55,6 @@ def logout(request):
     return HttpResponseRedirect('/')
 
 
-#REGISTER
 def register_user(request):
     if request.user.is_authenticated():
         return HttpResponseRedirect('/logged_in')
@@ -77,7 +76,7 @@ def register_success(request):
     return render_to_response('account/register_success.html')
 
 
-#UPLOAD
+#Upload images
 def upload(request):
     if request.method == 'POST':
         form = UploadFileForm(request.POST, request.FILES, request.user)
@@ -91,16 +90,26 @@ def upload(request):
     return render_to_response('upload.html', data, context_instance=RequestContext(request))
 
 
-#IMAGES
+#View images
 def images(request):
     if request.method == 'GET':
         args = {}
         args.update(csrf(request))
         args['images'] = UploadFile.objects.filter(user=request.user)
         return render_to_response("images.html", args, context_instance=RequestContext(request))
-    return 'hello'
+    return 'No images found'
 
 
+#View single image
+def view_image(request, path):
+    if request.method == 'GET':
+        args = {}
+        args.update(csrf(request))
+        args['image'] = UploadFile.objects.filter(file=path).first()
+        return render_to_response("image.html", args, context_instance=RequestContext(request))
+    return 'Image not found'
+
+#File requests
 def files(request, path):
     url = "files/"+path
     requested_file_query_set = UploadFile.objects.filter(file=url)
@@ -112,6 +121,7 @@ def files(request, path):
         raise PermissionDenied()
 
 
+#Caching is used for thumbnails
 def cache(request, path):
     path = smart_str(os.path.join(settings.CACHE_DIR, path))
     return sendfile(request, path)

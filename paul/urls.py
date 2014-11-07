@@ -23,8 +23,9 @@ urlpatterns = patterns('',
     #UPLOAD
     url(r'^upload/$', 'paul.views.upload', name="upload"),
 
-    #VIEW IMAGES
+    #IMAGES
     (r'^images/$', 'paul.views.images'),
     url(r'^files/(?P<path>.*)$', 'paul.views.files'),
     url(r'^images/cache/(?P<path>.*)$', 'paul.views.cache'),
+    url(r'^view_image/(?P<path>.*)$', 'paul.views.view_image'),
 )
