@@ -61,3 +61,7 @@ button {
     border: solid 2px;
     border-color: #8C3130;
 }
+
+.view_image_img {
+    max-height: 500px;
+}
