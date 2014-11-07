@@ -1,7 +1,12 @@
 {% extends 'base.html' %}
 
 {% block content %}
-        <div class="large-10 medium-10 columns">
-                <img class="view_image_img" src="/{{ image.file }}">
-        </div>
+    <div class="large-10 medium-10 columns">
+        <img id="canvas-image-source" src="/{{ image.file }}">
+        <canvas id="image-canvas"></canvas>
+    </div>
+    <div class="large-2 medium-2 columns">
+        <input id="bri" type="text" value="1"/>
+    </div>
+    <script src="/static/js/paul_camanjs.js"></script>
 {% endblock %}
