@@ -68,6 +68,10 @@ button {
 }
 
 #canvas-container {
+    /*TODO set max height and width*/
+}
+
+#canvas-container {
     width: 100%;
 }
 
