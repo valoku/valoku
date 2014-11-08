@@ -7,23 +7,9 @@ myImage.onload = function () {
     drawImage();
 //    applyFilters();
 
-    var brightnessSlider = document.getElementById('brightness-slider');
 
     var camanFilters = {
         brightness: 0
-    }
-
-    brightnessSlider.oninput = Foundation.utils.throttle(brightnessChanged, 700);
-
-
-    function brightnessChanged() {
-        var amount = brightnessSlider.value;
-        setBrightness(amount);
-    }
-
-    function setBrightness(amount) {
-        camanFilters.brightness = amount;
-        drawImage();
     }
 
     function drawImage() {
@@ -36,6 +22,7 @@ myImage.onload = function () {
                     height: canvasContainer.height
                 });
             }
+            this.brightness(camanFilters.brightness);
             this.brightness(camanFilters.brightness);
             this.render();
         });
@@ -56,4 +43,34 @@ myImage.onload = function () {
     }
 
     window.onresize = Foundation.utils.throttle(update, 700);
+
+    var brightnessSlider = document.getElementById('brightness-slider');
+    var contrastSlider = document.getElementById('brightness-slider');
+    var saturationSlider = document.getElementById('brightness-slider');
+    var hueSlider = document.getElementById('brightness-slider');
+
+
+    brightnessSlider.oninput = Foundation.utils.throttle(brightnessChanged, 700);
+    function brightnessChanged() {
+        camanFilters.brightness = brightnessSlider.value;
+        drawImage();
+    }
+
+    contrastSlider.oninput = Foundation.utils.throttle(contrastChanged, 700);
+    function contrastChanged() {
+        camanFilters.contrast = contrastSlider.value;
+        drawImage();
+    }
+
+    saturationSlider.oninput = Foundation.utils.throttle(saturationChanged, 700);
+    function saturationChanged() {
+        camanFilters.saturation = saturationSlider.value;
+        drawImage();
+    }
+
+    hueSlider.oninput = Foundation.utils.throttle(hueChanged, 700);
+    function hueChanged() {
+        camanFilters.hue = hueSlider.value;
+        drawImage();
+    }
 }
