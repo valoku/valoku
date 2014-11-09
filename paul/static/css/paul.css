@@ -1,45 +1,7 @@
-h2 {
-    color: #CCCCCC;
-}
-
-body {
-    background-color: #8C3130;
-}
-
-#header {
-    background-color: #CCCCCC;
-}
-
-#footer {
-    border-top: solid white thin;
-    border-bottom: solid black thin;
-    background-color: #0C5149;
-    color: #E6E6FA;
-}
-
 #content {
     margin-top: 10px;
     overflow: auto;
     border: 1px #CCCCCC;
-    border-radius: 10px;
-    background-color: #f5f5f5;
-}
-
-a:visited {
-    text-decoration: none;
-}
-
-a:link {
-    color: black;
-}
-
-a:hover {
-
-    background-color: transparent;
-}
-
-a {
-    text-decoration: none;
 }
 
 button {
