@@ -6,13 +6,16 @@ myImage.onload = function () {
     var imageElement = document.getElementById('canvas-image-source');
     drawImage();
 
-
-    var camanFilters = {
-        brightness: 0,
-        contrast: 0,
-        hue: 100,
-        saturation: 0
+    function getDefaultFilters() {
+        return {
+            brightness: 0,
+            contrast: 0,
+            hue: 100,
+            saturation: 0
+        }
     }
+
+    var camanFilters = getDefaultFilters();
 
     function drawImage() {
         updateCanvasSize();
@@ -71,11 +74,23 @@ myImage.onload = function () {
     saturationSlider.onchange = onSliderInput;
     hueSlider.onchange = onSliderInput;
 
-    function onSliderInput(){
+    function onSliderInput() {
         camanFilters.brightness = brightnessSlider.value;
         camanFilters.contrast = parseInt(contrastSlider.value);
         camanFilters.hue = hueSlider.value;
         camanFilters.saturation = saturationSlider.value;
+        Foundation.utils.debounce(applyFilters(), 500);
+    }
+
+    var resetButton = document.getElementById('reset-button');
+    resetButton.onclick = resetButtonPressed;
+
+    function resetButtonPressed() {
+        camanFilters = getDefaultFilters();
+        brightnessSlider.value = camanFilters.brightness;
+        contrastSlider.value = camanFilters.contrast;
+        hueSlider.value = camanFilters.hue;
+        saturationSlider.value = camanFilters.saturation;
         Foundation.utils.debounce(applyFilters(), 500);
     }
 }
