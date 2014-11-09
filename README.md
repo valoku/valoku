@@ -1,34 +1,30 @@
-paul
-====
-(this are just notes to myself for now, must clean up :)
-IF YOU ARE ON 64BIT WINDOWS MAKE SURE *EVERYTHING* below is 64 bit
+Paul
+===================
 
--Install Python 2.7
-(if you already have 32 bit and on windows 64bit then remember to change path env)
+Paul is an web-based application for storing and editing images.
 
--Install Django 1.7
 
--manage.py syncdb/migrate
+Setting up your development environment
+-------------
+#### Install Python and pip
+Start by installing Python and pip. The recommended Python version is 2.7. Instructions for downloading pip can be found [here](http://pip.readthedocs.org/en/latest/installing.html).
 
--install apache 2.4 http://httpd.apache.org/
-(https://www.apachelounge.com/download/win64/ if on windows 64 bit)
+#### Clone the project
+Use git to clone the project:
 
--install modwsgi by putting module in apache's installation's module directory
-(eg. C:\Program Files (x86)\Apache Software Foundation\Apache2.2\modules)
+    git clone git@github.com:nyholmniklas/paul.git
 
--install xsendfile support for appache by putting module in apache's installation's module directory
-win x64 binaries eg here: https://github.com/nmaier/mod_xsendfile/tree/master/bin/Apache24/Win64
+#### Install dependencies
+The dependencies are listed in requirement.txt file, you can install them with:
 
--Add these lines to http.conf file in the apache conf folder:
-LoadModule wsgi_module modules/mod_wsgi.so
-LoadModule xsendfile_module modules/mod_xsendfile.so
+    pip install -r requirements.txt
 
--Add this line to http.conf file in the apache conf folder:
-Include “F:/{path_to_paul_webapp}/apache/apache_django_wsgi.conf “
-(eg. Include "C:/Users/Bob/MyPythonProjects/paul/apache/apache_django_wsgi.conf")
+#### Generate database
+Django can generate a database directly from the models. For the purposes of your development environment, SQLLite is used. You can generate the database using:
 
--Create the file apache_django_wsgi.conf referenced above
+    python manage.py migrate
 
--Create files/ folder in django project root
+#### Run server
+Finally, you can use Django's built-in server for running the application in your development environment. 
 
--install module libapache2-mod-xsendfile on apache
+    python manage.py runserver
