@@ -1,6 +1,6 @@
 var myImage = document.getElementById('canvas-image-source');
 
-myImage.onload = function () {
+if (myImage != null) myImage.onload = function () {
     var canvasContainer = document.getElementById('canvas-container');
     var canvasContext = document.getElementById('image-canvas').getContext('2d');
     var imageElement = document.getElementById('canvas-image-source');
