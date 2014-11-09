@@ -15,7 +15,7 @@ Use git to clone the project:
     git clone git@github.com:nyholmniklas/paul.git
 
 #### Install dependencies
-The dependencies are listed in requirement.txt file, you can install them with:
+The dependencies are listed in requirements.txt file, you can install them with:
 
     pip install -r requirements.txt
 
