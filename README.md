@@ -28,3 +28,5 @@ Django can generate a database directly from the models. For the purposes of you
 Finally, you can use Django's built-in server for running the application in your development environment. 
 
     python manage.py runserver
+
+Now you should be able to access the application by pointing your browser to [http://localhost:8000/](http://localhost:8000/)
