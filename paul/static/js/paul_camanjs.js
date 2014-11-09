@@ -10,14 +10,14 @@ myImage.onload = function () {
     var camanFilters = {
         brightness: 0,
         contrast: 0,
-        hue: 50,
+        hue: 100,
         saturation: 0
     }
 
     function drawImage() {
         updateCanvasSize();
         Caman(canvasContext.canvas, imageElement.src, function () {
-            this.reset();
+            this.revert();
             if (canvasContext.canvas != null) {
                 this.resize({
                     width: canvasContainer.width,
@@ -26,6 +26,8 @@ myImage.onload = function () {
             }
             this.brightness(camanFilters.brightness);
             this.contrast(camanFilters.contrast);
+            this.hue(camanFilters.hue);
+            this.saturation(camanFilters.saturation);
             this.render();
         });
     }
@@ -64,28 +66,16 @@ myImage.onload = function () {
     var hueSlider = document.getElementById('hue-slider');
 
 
-    brightnessSlider.oninput = Foundation.utils.debounce(brightnessChanged, 500);
-    function brightnessChanged() {
+    brightnessSlider.onchange = onSliderInput;
+    contrastSlider.onchange = onSliderInput;
+    saturationSlider.onchange = onSliderInput;
+    hueSlider.onchange = onSliderInput;
+
+    function onSliderInput(){
         camanFilters.brightness = brightnessSlider.value;
-        applyFilters();
-    }
-
-    contrastSlider.onchange = Foundation.utils.debounce(contrastChanged, 500);
-    function contrastChanged() {
         camanFilters.contrast = parseInt(contrastSlider.value);
-        applyFilters();
-    }
-
-
-    saturationSlider.oninput = Foundation.utils.throttle(saturationChanged, 700);
-    function saturationChanged() {
-        camanFilters.saturation = saturationSlider.value;
-        applyFilters();
-    }
-
-    hueSlider.oninput = Foundation.utils.throttle(hueChanged, 700);
-    function hueChanged() {
         camanFilters.hue = hueSlider.value;
-        applyFilters();
+        camanFilters.saturation = saturationSlider.value;
+        Foundation.utils.debounce(applyFilters(), 500);
     }
 }
