@@ -25,7 +25,7 @@ urlpatterns = patterns('',
 
     #IMAGES
     (r'^images/$', 'paul.views.images'),
-    url(r'^files/(?P<path>.*)$', 'paul.views.files'),
+    url(r'^files/(?P<id>.*)$', 'paul.views.files'),
     url(r'^images/cache/(?P<path>.*)$', 'paul.views.cache'),
-    url(r'^view_image/(?P<path>.*)$', 'paul.views.view_image'),
+    url(r'^view_image/(?P<id>.*)$', 'paul.views.view_image'),
 )

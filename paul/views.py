@@ -101,22 +101,19 @@ def images(request):
 
 
 #View single image
-def view_image(request, path):
+def view_image(request, id):
     if request.method == 'GET':
         args = {}
         args.update(csrf(request))
-        args['image'] = UploadFile.objects.filter(file=path).first()
+        args['image'] = UploadFile.objects.get(id=id)
         return render_to_response("image.html", args, context_instance=RequestContext(request))
     return 'Image not found'
 
 #File requests
-def files(request, path):
-    url = "files/"+path
-    requested_file_query_set = UploadFile.objects.filter(file=url)
-    requested_file = list(requested_file_query_set)[0]
+def files(request, id):
+    requested_file = UploadFile.objects.get(id=id)
     if requested_file.user == request.user:
-        path = smart_str(os.path.join(settings.FILES_DIR, path))
-        return sendfile(request, path)
+        return sendfile(request, requested_file.file.path)
     else:
         raise PermissionDenied()
 
