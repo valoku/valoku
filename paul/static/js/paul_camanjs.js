@@ -11,7 +11,8 @@ if (myImage != null) myImage.onload = function () {
             brightness: 0,
             contrast: 0,
             hue: 100,
-            saturation: 0
+            saturation: 0,
+            vignette: "0%"
         }
     }
 
@@ -31,6 +32,7 @@ if (myImage != null) myImage.onload = function () {
             this.contrast(camanFilters.contrast);
             this.hue(camanFilters.hue);
             this.saturation(camanFilters.saturation);
+            this.vignette(camanFilters.vignette);
             this.render();
         });
     }
@@ -43,6 +45,7 @@ if (myImage != null) myImage.onload = function () {
             this.contrast(camanFilters.contrast);
             this.hue(camanFilters.hue);
             this.saturation(camanFilters.saturation);
+            this.vignette(camanFilters.vignette);
             this.render();
         });
     }
@@ -67,18 +70,21 @@ if (myImage != null) myImage.onload = function () {
     var contrastSlider = document.getElementById('contrast-slider');
     var saturationSlider = document.getElementById('saturation-slider');
     var hueSlider = document.getElementById('hue-slider');
+    var vignetteSlider = document.getElementById('vignette-slider');
 
 
     brightnessSlider.onchange = onSliderInput;
     contrastSlider.onchange = onSliderInput;
     saturationSlider.onchange = onSliderInput;
     hueSlider.onchange = onSliderInput;
+    vignetteSlider.onchange = onSliderInput;
 
     function onSliderInput() {
         camanFilters.brightness = brightnessSlider.value;
         camanFilters.contrast = parseInt(contrastSlider.value);
         camanFilters.hue = hueSlider.value;
         camanFilters.saturation = saturationSlider.value;
+        camanFilters.vignette = vignetteSlider.value+"%";
         Foundation.utils.debounce(applyFilters(), 500);
     }
 
