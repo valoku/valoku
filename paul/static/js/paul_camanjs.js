@@ -1,6 +1,7 @@
-var myImage = document.getElementById('canvas-image-source');
+var myImage = $("#canvas-image-source");
+myImage.load(imageLoaded);
 
-if (myImage != null) myImage.onload = function () {
+function imageLoaded() {
     var canvasContainer = document.getElementById('canvas-container');
     var canvasContext = document.getElementById('image-canvas').getContext('2d');
     var imageElement = document.getElementById('canvas-image-source');
@@ -153,11 +154,8 @@ if (myImage != null) myImage.onload = function () {
         jQuery.ajax({
             url: '/save_edited_file/',
             type: 'POST',
-            data: {
-                csrfmiddlewaretoken: '{{ csrf_token }}',
-//                image
-            },
-            dataType: "json",
+            data: image,
+//            dataType: "json",
             cache: false,
             processData: false,
             contentType: false,
@@ -167,3 +165,4 @@ if (myImage != null) myImage.onload = function () {
         });
     }
 }
+

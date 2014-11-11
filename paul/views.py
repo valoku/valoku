@@ -102,7 +102,6 @@ def images(request):
 
 #View single image
 def view_image(request, id):
-    print('hei')
     if request.method == 'GET':
         args = {}
         args.update(csrf(request))
@@ -119,9 +118,19 @@ def files(request, id):
     else:
         raise PermissionDenied()
 
+import base64
 
 def save_edited_file(request):
-    print('meery xmas!')
+    try:
+        image = base64.b64decode(request.body)
+        new_file = UploadFile(file=image, user=request.user)
+        new_file.save()
+        return HttpResponse('')
+    except TypeError as e:
+        print(e)
+        return PermissionDenied()
+    return PermissionDenied()
+
 
 
 #Caching is used for thumbnails
