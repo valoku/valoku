@@ -97,6 +97,7 @@ if (myImage != null) myImage.onload = function () {
         contrastSlider.value = camanFilters.contrast;
         hueSlider.value = camanFilters.hue;
         saturationSlider.value = camanFilters.saturation;
+        vignetteSlider.value = parseInt(camanFilters.saturation);
         Foundation.utils.debounce(applyFilters(), 500);
     }
 
