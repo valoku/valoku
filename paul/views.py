@@ -120,8 +120,8 @@ def files(request, id):
         raise PermissionDenied()
 
 
-def save_edited_file(request, data):
-    print(data)
+def save_edited_file(request):
+    print('meery xmas!')
 
 
 #Caching is used for thumbnails
