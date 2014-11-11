@@ -102,12 +102,14 @@ def images(request):
 
 #View single image
 def view_image(request, id):
+    print('hei')
     if request.method == 'GET':
         args = {}
         args.update(csrf(request))
         args['image'] = UploadFile.objects.get(id=id)
         return render_to_response("image.html", args, context_instance=RequestContext(request))
     return 'Image not found'
+
 
 #File requests
 def files(request, id):
@@ -116,6 +118,10 @@ def files(request, id):
         return sendfile(request, requested_file.file.path)
     else:
         raise PermissionDenied()
+
+
+def save_edited_file(request, data):
+    print(data)
 
 
 #Caching is used for thumbnails

@@ -84,7 +84,7 @@ if (myImage != null) myImage.onload = function () {
         camanFilters.contrast = parseInt(contrastSlider.value);
         camanFilters.hue = hueSlider.value;
         camanFilters.saturation = saturationSlider.value;
-        camanFilters.vignette = vignetteSlider.value+"%";
+        camanFilters.vignette = vignetteSlider.value + "%";
         Foundation.utils.debounce(applyFilters(), 500);
     }
 
@@ -98,5 +98,32 @@ if (myImage != null) myImage.onload = function () {
         hueSlider.value = camanFilters.hue;
         saturationSlider.value = camanFilters.saturation;
         Foundation.utils.debounce(applyFilters(), 500);
+    }
+
+    var saveButton = document.getElementById('save-button');
+    saveButton.onclick = saveButtonPressed;
+
+    function saveButtonPressed() {
+        Caman("#canvas-image-source", function () {
+            //Apply filters here ??
+            this.render(function () {
+                var image = this.toBase64();
+                saveToServer(image);
+            });
+        });
+    }
+
+    function saveToServer(image) {
+        jQuery.ajax({
+            url: '/save_edited_file/',
+            type: 'POST',
+            data: image,
+            cache: false,
+            processData: false,
+            contentType: false,
+                success: function(data) {
+                    console.log(data);
+                    }
+        });
     }
 }

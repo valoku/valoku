@@ -46,3 +46,8 @@ button {
     width: 100%;
 }
 
+/*Login and register buttons*/
+#login-button, #register-button {
+    width: 100%;
+    max-width: 100%;
+}
