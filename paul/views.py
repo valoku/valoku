@@ -124,10 +124,15 @@ def save_edited_file(request, id):
     try:
         base64data = request.body.split(',', 1)[1]
         binary_image = base64.b64decode(base64data)
-        content_file = ContentFile(binary_image)
-        new_file = UploadFile.objects.get(id=id)
-        new_file.file.save(content_file)
-        content_file.close()
+        existing_file = UploadFile.objects.get(id=id).file
+        print(existing_file.path)
+        file = open(existing_file.path, 'wb')
+        file.write(binary_image)
+        file = File(file)
+        existing_file.source = file
+        #existing_file.save()
+        file.close()
+        #content_file.close()
         return HttpResponse('')
     except TypeError as e:
         print(e)
