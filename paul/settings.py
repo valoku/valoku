@@ -121,3 +121,6 @@ SENDFILE_ROOT = FILES_DIR
 SENDFILE_BACKEND = 'sendfile.backends.development'
 CACHE_DIR = BASE_DIR + '/cache/'
 THUMBNAIL_DEBUG = True
+
+#Fixes base64 upload
+DEFAULT_CHARSET='UTF-8'

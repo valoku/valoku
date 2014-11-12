@@ -12,7 +12,7 @@ from paul.models import *
 from paul import settings
 
 from sendfile import sendfile
-
+from django.core.files import File
 
 def home(request):
     if request.user.is_authenticated():
@@ -119,18 +119,21 @@ def files(request, id):
         raise PermissionDenied()
 
 import base64
-
+from django.core.files.base import ContentFile
 def save_edited_file(request):
     try:
-        image = base64.b64decode(request.body)
-        new_file = UploadFile(file=image, user=request.user)
+        base64data = request.body.split(',', 1)[1]
+        binary_image = base64.b64decode(base64data)
+        content_file = ContentFile(binary_image)
+        new_file = UploadFile(user=request.user)
         new_file.save()
+        new_file.file.save('lolol.png', content_file)
+        content_file.close()
         return HttpResponse('')
     except TypeError as e:
         print(e)
         return PermissionDenied()
     return PermissionDenied()
-
 
 
 #Caching is used for thumbnails

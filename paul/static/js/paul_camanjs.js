@@ -22,7 +22,7 @@ function imageLoaded() {
     function drawImage() {
         updateCanvasSize();
         Caman(canvasContext.canvas, imageElement.src, function () {
-            this.revert();
+            this.revert(false);
             if (canvasContext.canvas != null) {
                 this.resize({
                     width: canvasContainer.width,
@@ -106,7 +106,7 @@ function imageLoaded() {
     saveButton.onclick = saveButtonPressed;
 
     function saveButtonPressed() {
-        Caman("#canvas-image-source", function () {
+        Caman(canvasContext.canvas, function () {
             //Apply filters here ??
             this.render(function () {
                 var image = this.toBase64();
