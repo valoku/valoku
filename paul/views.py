@@ -120,14 +120,13 @@ def files(request, id):
 
 import base64
 from django.core.files.base import ContentFile
-def save_edited_file(request):
+def save_edited_file(request, id):
     try:
         base64data = request.body.split(',', 1)[1]
         binary_image = base64.b64decode(base64data)
         content_file = ContentFile(binary_image)
-        new_file = UploadFile(user=request.user)
-        new_file.save()
-        new_file.file.save('lolol.png', content_file)
+        new_file = UploadFile.objects.get(id=id)
+        new_file.file.save(content_file)
         content_file.close()
         return HttpResponse('')
     except TypeError as e:

@@ -151,11 +151,11 @@ function imageLoaded() {
                 }
             }
         });
+        var url = '/save_edited_file/'+ $('#hidden-image-id').text()
         jQuery.ajax({
-            url: '/save_edited_file/',
+            url: url,
             type: 'POST',
-            data: image,
-//            dataType: "json",
+            data:  image,
             cache: false,
             processData: false,
             contentType: false,

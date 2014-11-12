@@ -28,5 +28,5 @@ urlpatterns = patterns('',
     url(r'^files/(?P<id>.*)$', 'paul.views.files'),
     url(r'^images/cache/(?P<path>.*)$', 'paul.views.cache'),
     url(r'^view_image/(?P<id>.*)$', 'paul.views.view_image'),
-    (r'^save_edited_file/$', 'paul.views.save_edited_file'),
+    (r'^save_edited_file/(?P<id>.*)$', 'paul.views.save_edited_file'),
 )
