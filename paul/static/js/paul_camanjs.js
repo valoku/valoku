@@ -106,12 +106,18 @@ function imageLoaded() {
     saveButton.onclick = saveButtonPressed;
 
     function saveButtonPressed() {
-        Caman(canvasContext.canvas, function () {
-            //Apply filters here ??
+        Caman(imageElement, function () {
+            this.revert(false);
+            this.brightness(camanFilters.brightness);
+            this.contrast(camanFilters.contrast);
+            this.hue(camanFilters.hue);
+            this.saturation(camanFilters.saturation);
+            this.vignette(camanFilters.vignette);
             this.render(function () {
                 var image = this.toBase64();
                 saveToServer(image);
             });
+            this.reset();
         });
     }
 
@@ -151,11 +157,11 @@ function imageLoaded() {
                 }
             }
         });
-        var url = '/save_edited_file/'+ $('#hidden-image-id').text()
+        var url = '/save_edited_file/' + $('#hidden-image-id').text()
         jQuery.ajax({
             url: url,
             type: 'POST',
-            data:  image,
+            data: image,
             cache: false,
             processData: false,
             contentType: false,

@@ -13,6 +13,8 @@ from paul import settings
 
 from sendfile import sendfile
 from django.core.files import File
+import base64
+
 
 def home(request):
     if request.user.is_authenticated():
@@ -118,21 +120,17 @@ def files(request, id):
     else:
         raise PermissionDenied()
 
-import base64
-from django.core.files.base import ContentFile
+
 def save_edited_file(request, id):
     try:
         base64data = request.body.split(',', 1)[1]
         binary_image = base64.b64decode(base64data)
         existing_file = UploadFile.objects.get(id=id).file
-        print(existing_file.path)
         file = open(existing_file.path, 'wb')
         file.write(binary_image)
         file = File(file)
         existing_file.source = file
-        #existing_file.save()
         file.close()
-        #content_file.close()
         return HttpResponse('')
     except TypeError as e:
         print(e)
