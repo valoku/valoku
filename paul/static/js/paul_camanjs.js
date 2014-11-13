@@ -19,6 +19,14 @@ function imageLoaded() {
 
     var camanFilters = getDefaultFilters();
 
+    function setContextFilters(context) {
+        context.brightness(camanFilters.brightness);
+        context.contrast(camanFilters.contrast);
+        context.hue(camanFilters.hue);
+        context.saturation(camanFilters.saturation);
+        context.vignette(camanFilters.vignette);
+    }
+
     function drawImage() {
         updateCanvasSize();
         Caman(canvasContext.canvas, imageElement.src, function () {
@@ -29,11 +37,7 @@ function imageLoaded() {
                     height: canvasContainer.height
                 });
             }
-            this.brightness(camanFilters.brightness);
-            this.contrast(camanFilters.contrast);
-            this.hue(camanFilters.hue);
-            this.saturation(camanFilters.saturation);
-            this.vignette(camanFilters.vignette);
+            setContextFilters(this);
             this.render();
         });
     }
@@ -42,11 +46,7 @@ function imageLoaded() {
         updateCanvasSize();
         Caman(canvasContext.canvas, function () {
             this.revert(false);
-            this.brightness(camanFilters.brightness);
-            this.contrast(camanFilters.contrast);
-            this.hue(camanFilters.hue);
-            this.saturation(camanFilters.saturation);
-            this.vignette(camanFilters.vignette);
+            setContextFilters(this);
             this.render();
         });
     }
@@ -108,11 +108,7 @@ function imageLoaded() {
     function saveButtonPressed() {
         Caman(imageElement, function () {
             this.revert(false);
-            this.brightness(camanFilters.brightness);
-            this.contrast(camanFilters.contrast);
-            this.hue(camanFilters.hue);
-            this.saturation(camanFilters.saturation);
-            this.vignette(camanFilters.vignette);
+            setContextFilters(this);
             this.render(function () {
                 var image = this.toBase64();
                 saveToServer(image);
