@@ -11,10 +11,12 @@ from paul.forms import *
 from paul.models import *
 from paul import settings
 
+from sorl import thumbnail
+
 from sendfile import sendfile
 from django.core.files import File
 import base64
-
+import sys
 
 def home(request):
     if request.user.is_authenticated():
@@ -23,7 +25,7 @@ def home(request):
         return HttpResponseRedirect('/login')
 
 
-#AUTHENTICATION
+# AUTHENTICATION
 def login(request):
     if request.user.is_authenticated():
         return HttpResponseRedirect('/')
@@ -131,6 +133,7 @@ def save_edited_file(request, id):
         file = File(file)
         existing_file.source = file
         file.close()
+        thumbnail.delete(existing_file, delete_file=False)
         return HttpResponse('')
     except TypeError as e:
         print(e)
