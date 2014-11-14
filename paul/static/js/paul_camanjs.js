@@ -110,14 +110,23 @@ $(window).load(function () {
     saveButton.onclick = saveButtonPressed;
 
     function saveButtonPressed() {
+        //We need to clone the image element and later add it
+        //to the DOM because the call to Caman's render()
+        //replaces the img element with canvas
+        var imageElementClone = imageElement.cloneNode(true)
         Caman(imageElement, function () {
             this.revert(false);
             setContextFilters(this);
             this.render(function () {
                 var image = this.toBase64();
                 saveToServer(image);
+                //We now remove the canvas element that took the place of the img
+                imageElement = document.getElementById("canvas-image-source")
+                imageElement.parentNode.removeChild(imageElement)
+                //Then we add the clone to the DOM and assign it to imageElement
+                document.body.appendChild(imageElementClone)
+                imageElement = imageElementClone
             });
-            this.reset();
         });
     }
 
