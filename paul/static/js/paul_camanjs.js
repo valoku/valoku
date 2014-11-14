@@ -1,10 +1,8 @@
-var myImage = $("#canvas-image-source");
-myImage.load(imageLoaded);
-
-function imageLoaded() {
+$(window).load(function()  {
+    var imageElement = document.getElementById('canvas-image-source');
+    if (imageElement == null) return;
     var canvasContainer = document.getElementById('canvas-container');
     var canvasContext = document.getElementById('image-canvas').getContext('2d');
-    var imageElement = document.getElementById('canvas-image-source');
     drawImage();
 
     function getDefaultFilters() {
@@ -166,5 +164,5 @@ function imageLoaded() {
             }
         });
     }
-}
+});
 
