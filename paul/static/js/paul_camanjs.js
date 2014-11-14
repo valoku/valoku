@@ -1,4 +1,4 @@
-$(window).load(function()  {
+$(window).load(function () {
     var imageElement = document.getElementById('canvas-image-source');
     if (imageElement == null) return;
     var canvasContainer = document.getElementById('canvas-container');
@@ -51,6 +51,12 @@ $(window).load(function()  {
 
     function update() {
         updateCanvasSize();
+        //Calling draw image twice fixes problem when browser
+        // is resized from very small to big and resolution
+        // and filters dont update accordingly.
+        // This should be fixed better than calling the same
+        // method twice and hoping for the best.
+        drawImage();
         drawImage();
     }
 
