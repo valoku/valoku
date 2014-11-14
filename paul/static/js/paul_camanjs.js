@@ -1,4 +1,9 @@
+$( document ).ready(function() {
+    showLoadingSpinner();
+});
+
 $(window).load(function () {
+    hideLoadingSpinner();
     var imageElement = document.getElementById('canvas-image-source');
     if (imageElement == null) return;
     var canvasContainer = document.getElementById('canvas-container');
@@ -110,6 +115,7 @@ $(window).load(function () {
     saveButton.onclick = saveButtonPressed;
 
     function saveButtonPressed() {
+        showLoadingSpinner();
         //We need to clone the image element and later add it
         //to the DOM because the call to Caman's render()
         //replaces the img element with canvas
@@ -121,11 +127,12 @@ $(window).load(function () {
                 var image = this.toBase64();
                 saveToServer(image);
                 //We now remove the canvas element that took the place of the img
-                imageElement = document.getElementById("canvas-image-source")
-                imageElement.parentNode.removeChild(imageElement)
+                imageElement = document.getElementById("canvas-image-source");
+                imageElement.parentNode.removeChild(imageElement);
                 //Then we add the clone to the DOM and assign it to imageElement
-                document.body.appendChild(imageElementClone)
-                imageElement = imageElementClone
+                document.body.appendChild(imageElementClone);
+                imageElement = imageElementClone;
+                hideLoadingSpinner();
             });
         });
     }
@@ -180,4 +187,19 @@ $(window).load(function () {
         });
     }
 });
+
+var spinner;
+function showLoadingSpinner() {
+    var canvasContainerDiv = document.getElementById('canvas-container');
+    spinnerOptions = {
+
+    };
+    spinner = new Spinner(spinnerOptions).spin(canvasContainerDiv);
+}
+
+function hideLoadingSpinner() {
+    if (spinner) {
+        spinner.stop();
+    }
+}
 
