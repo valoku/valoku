@@ -1,4 +1,5 @@
 Dropzone.options.myDropzone = {
+    acceptedFiles: "image/*",
     // Prevents Dropzone from uploading dropped files immediately
     autoProcessQueue: false,
     init: function () {
