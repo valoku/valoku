@@ -2,8 +2,9 @@ Dropzone.options.myDropzone = {
     acceptedFiles: "image/*",
     // Prevents Dropzone from uploading dropped files immediately
     autoProcessQueue: false,
+    maxFilesize: 3, // MB
     init: function () {
-        var submitButton = document.querySelector("#submit-all")
+        var submitButton = document.querySelector("#submit-all");
         myDropzone = this;
         submitButton.addEventListener("click", function () {
             myDropzone.processQueue();
