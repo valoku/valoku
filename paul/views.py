@@ -123,7 +123,10 @@ def files(request, id):
     else:
         raise PermissionDenied()
 
-MAX_FILE_SIZE = 20*1024*1024 #20MB
+
+MAX_FILE_SIZE = 20*1024*1024  # 20MB
+
+
 def save_edited_file(request, id):
     base64data = request.body.split(',', 1)[1]
     binary_image = base64.b64decode(base64data)
