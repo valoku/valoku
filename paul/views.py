@@ -1,5 +1,6 @@
 import os
 from django.contrib.auth.forms import UserCreationForm
+from django.http import HttpResponseBadRequest
 from django.shortcuts import *
 from django.core.context_processors import csrf
 from django.contrib import auth
@@ -122,23 +123,22 @@ def files(request, id):
     else:
         raise PermissionDenied()
 
-
+MAX_FILE_SIZE = 20*1024*1024 #20MB
 def save_edited_file(request, id):
-    try:
-        base64data = request.body.split(',', 1)[1]
-        binary_image = base64.b64decode(base64data)
-        existing_file = UploadFile.objects.get(id=id).file
-        file = open(existing_file.path, 'wb')
-        file.write(binary_image)
-        file = File(file)
-        existing_file.source = file
-        file.close()
-        thumbnail.delete(existing_file, delete_file=False)
-        return HttpResponse('')
-    except TypeError as e:
-        print(e)
-        return PermissionDenied()
-    return PermissionDenied()
+    base64data = request.body.split(',', 1)[1]
+    binary_image = base64.b64decode(base64data)
+    #Check file size limit
+    if sys.getsizeof(binary_image) > MAX_FILE_SIZE:
+        return HttpResponseBadRequest()
+    #Save file
+    existing_file = UploadFile.objects.get(id=id).file
+    file = open(existing_file.path, 'wb')
+    file.write(binary_image)
+    file = File(file)
+    existing_file.source = file
+    file.close()
+    thumbnail.delete(existing_file, delete_file=False)
+    return HttpResponse('')
 
 
 #Caching is used for thumbnails
