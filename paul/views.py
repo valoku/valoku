@@ -88,11 +88,12 @@ MAX_UPLOAD_FILE_SIZE = 3.15*1024*1024
 #Upload images
 def upload(request):
     if request.method == 'POST':
+        file = request.FILES['file']
+        #Check file size limit
+        if sys.getsizeof(file.file) > MAX_UPLOAD_FILE_SIZE:
+            return HttpResponseBadRequest()
         form = UploadFileForm(request.POST, request.FILES, request.user)
         if form.is_valid():
-            file = request.FILES['file']
-            if sys.getsizeof(file.file) > MAX_UPLOAD_FILE_SIZE:
-                return HttpResponseBadRequest()
             new_file = UploadFile(file=file, user=request.user)
             new_file.save()
             return HttpResponseRedirect('/')
