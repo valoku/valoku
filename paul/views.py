@@ -81,12 +81,19 @@ def register_success(request):
     return render_to_response('account/register_success.html')
 
 
+# 3.15MB = 3MiB (same limit is set in paul-upload.js for client side)
+MAX_UPLOAD_FILE_SIZE = 3.15*1024*1024
+
+
 #Upload images
 def upload(request):
     if request.method == 'POST':
         form = UploadFileForm(request.POST, request.FILES, request.user)
         if form.is_valid():
-            new_file = UploadFile(file=request.FILES['file'], user=request.user)
+            file = request.FILES['file']
+            if sys.getsizeof(file.file) > MAX_UPLOAD_FILE_SIZE:
+                return HttpResponseBadRequest()
+            new_file = UploadFile(file=file, user=request.user)
             new_file.save()
             return HttpResponseRedirect('/')
     else:
@@ -124,14 +131,15 @@ def files(request, id):
         raise PermissionDenied()
 
 
-MAX_FILE_SIZE = 20*1024*1024  # 20MB
+#TODO Compress jpeg client side and lower this number
+MAX_EDITED_FILE_SIZE = 20*1024*1024  # 20MB
 
 
 def save_edited_file(request, id):
     base64data = request.body.split(',', 1)[1]
     binary_image = base64.b64decode(base64data)
     #Check file size limit
-    if sys.getsizeof(binary_image) > MAX_FILE_SIZE:
+    if sys.getsizeof(binary_image) > MAX_EDITED_FILE_SIZE:
         return HttpResponseBadRequest()
     #Save file
     existing_file = UploadFile.objects.get(id=id).file
