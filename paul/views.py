@@ -132,8 +132,8 @@ def files(request, id):
         raise PermissionDenied()
 
 
-#TODO Compress jpeg client side and lower this number
-MAX_EDITED_FILE_SIZE = 20*1024*1024  # 20MB
+#TODO This 5MB is arbitrary, and I am not sure if it is possible for it to be crossed
+MAX_EDITED_FILE_SIZE = 5*1024*1024  # 5MB
 
 
 def save_edited_file(request, id):
