@@ -124,7 +124,8 @@ $(window).load(function () {
             this.revert(false);
             setContextFilters(this);
             this.render(function () {
-                var image = this.toBase64();
+                imageQuality = 0.5;
+                var image = this.toBase64("jpeg", imageQuality);
                 saveToServer(image);
                 //We now remove the canvas element that took the place of the img
                 imageElement = document.getElementById("canvas-image-source");
