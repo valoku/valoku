@@ -31,9 +31,9 @@ $(window).load(function () {
     }
 
     function drawImage() {
-        updateCanvasSize();
+        setCanvasInitSize();
         Caman(canvasContext.canvas, imageElement.src, function () {
-            this.revert(false);
+//            this.revert(false);
             if (canvasContext.canvas != null) {
                 this.resize({
                     width: canvasContainer.width,
@@ -46,7 +46,6 @@ $(window).load(function () {
     }
 
     function applyFilters() {
-        updateCanvasSize();
         Caman(canvasContext.canvas, function () {
             this.revert(false);
             setContextFilters(this);
@@ -54,8 +53,9 @@ $(window).load(function () {
         });
     }
 
-    function updateCanvasSize() {
-        var canvasWidth = canvasContainer.clientWidth;
+    function setCanvasInitSize() {
+        var maxCanvasWidth = 900;
+        var canvasWidth = maxCanvasWidth;
         var canvasHeight = imageElement.naturalHeight / (imageElement.naturalWidth / canvasWidth);
         canvasContainer.width = canvasWidth;
         canvasContainer.height = canvasHeight;
