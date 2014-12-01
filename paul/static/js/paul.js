@@ -54,17 +54,6 @@ $(window).load(function () {
         });
     }
 
-    function update() {
-        updateCanvasSize();
-        //Calling draw image twice fixes problem when browser
-        // is resized from very small to big and resolution
-        // and filters dont update accordingly.
-        // This should be fixed better than calling the same
-        // method twice and hoping for the best.
-        drawImage();
-        drawImage();
-    }
-
     function updateCanvasSize() {
         var canvasWidth = canvasContainer.clientWidth;
         var canvasHeight = imageElement.naturalHeight / (imageElement.naturalWidth / canvasWidth);
@@ -73,8 +62,6 @@ $(window).load(function () {
         canvasContext.canvas.height = canvasHeight;
         canvasContext.canvas.width = canvasWidth;
     }
-
-    window.onresize = Foundation.utils.debounce(update, 700);
 
     var brightnessSlider = document.getElementById('brightness-slider');
     var contrastSlider = document.getElementById('contrast-slider');
