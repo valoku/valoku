@@ -1,52 +1,79 @@
-{% extends 'upload.html' %}
+<html>
+<head>
+    <title>paul</title>
+    <link rel="stylesheet" href="../vendor/foundation/css/foundation.css"/>
+    <script src="../vendor/foundation/vendor/modernizr.js"></script>
+    <link rel="stylesheet" href="../css/paul.css"/>
+</head>
+<body>
 
-{% block content %}
+<!-- Top bar starts-->
+<nav class="top-bar" data-topbar role="navigation">
+
+    <section class="top-bar-section">
+        <ul class="title-area">
+            <li class="name">
+                <a href="/"><img src="../img/logo.png"></a>
+            </li>
+            <li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
+        </ul>
+        <!-- Right Nav Section -->
+        <ul class="right">
+            <li class=""><a href="/upload/">About</a></li>
+            <li class=""><a href="/logout/">Save</a></li>
+        </ul>
+    </section>
+</nav>
+<!-- Top bar ends-->
 
 
-    <div class="large-10 medium-10 columns">
-        <img id="canvas-image-source" src="/files/{{ image.id }}">
+<div class="row">
+    <div class="large-12 columns">
+        <div class="panel" id="content">
+            <div class="large-10 medium-10 columns">
+                <img id="canvas-image-source" src="/files/{{ image.id }}">
 
-        <div id="canvas-container">
-            <canvas id="image-canvas" width="100" height="100"></canvas>
-        </div>
-    </div>
-    <div class="large-2 medium-2 columns">
-        <row>
-            <label for="brightness-slider">Brightness</label>
-        </row>
-        <row>
-            <input id="brightness-slider" class="slider" type="range" min="-100" max="100"/>
-        </row>
-        <row>
-            <label for="contrast-slider">Contrast</label>
-        </row>
-        <row>
-            <input id="contrast-slider" class="slider" type="range" min="-100" max="100"/>
-        </row>
-        <row>
-            <label for="saturation-slider">Saturation</label>
-        </row>
-        <row>
-            <input id="saturation-slider" class="slider" type="range" min="-100" max="100"/>
-        </row>
-        <row>
-            <label for="hue-slider">Hue</label>
-        </row>
-        <row>
-            <input id="hue-slider" class="slider" type="range" min="0" max="100" value="100"/>
-        </row>
-        <row>
-            <label for="vignette-slider">Vignette</label>
-        </row>
-        <row>
-            <input id="vignette-slider" class="slider" type="range" min="0" max="100" value="0"/>
-        </row>
-        <row>
-            <button id="reset-button">Reset</button>
-        </row>
-         <row>
-            <button id="save-button">Save</button>
-        </row>
-    </div>
-    <div style="display: none;"id="hidden-image-id">{{ image.id }}</div>
-{% endblock %}
+                <div id="canvas-container">
+                    <canvas id="image-canvas" width="100" height="100"></canvas>
+                </div>
+            </div>
+            <div class="large-2 medium-2 columns">
+                <row>
+                    <label for="brightness-slider">Brightness</label>
+                </row>
+                <row>
+                    <input id="brightness-slider" class="slider" type="range" min="-100" max="100"/>
+                </row>
+                <row>
+                    <label for="contrast-slider">Contrast</label>
+                </row>
+                <row>
+                    <input id="contrast-slider" class="slider" type="range" min="-100" max="100"/>
+                </row>
+                <row>
+                    <label for="saturation-slider">Saturation</label>
+                </row>
+                <row>
+                    <input id="saturation-slider" class="slider" type="range" min="-100" max="100"/>
+                </row>
+                <row>
+                    <label for="hue-slider">Hue</label>
+                </row>
+                <row>
+                    <input id="hue-slider" class="slider" type="range" min="0" max="100" value="100"/>
+                </row>
+                <row>
+                    <label for="vignette-slider">Vignette</label>
+                </row>
+                <row>
+                    <input id="vignette-slider" class="slider" type="range" min="0" max="100" value="0"/>
+                </row>
+                <row>
+                    <button id="reset-button">Reset</button>
+                </row>
+                <row>
+                    <button id="save-button">Save</button>
+                </row>
+            </div>
+            <div style="display: none;" id="hidden-image-id">{{ image.id }}</div>
+            {% endblock %}
