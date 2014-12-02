@@ -1,8 +1,8 @@
-$( document ).ready(function() {
+$(document).ready(function () {
     showLoadingSpinner();
 });
 
-$(window).load(function () {
+function showImage() {
     hideLoadingSpinner();
     var imageElement = document.getElementById('canvas-image-source');
     if (imageElement == null) return;
@@ -125,14 +125,47 @@ $(window).load(function () {
         });
     }
 
-});
+}
+
+$(window).load(function () {
+        var canvasContainer = document.getElementById('canvas-container');
+
+        canvasContainer.addEventListener('dragover', function (evt) {
+            evt.preventDefault();
+        }, false);
+
+        canvasContainer.addEventListener('drop', fileDropped, false);
+
+        function fileDropped(ev) {
+            var files = ev.dataTransfer.files;
+            if (files.length > 0) {
+                var file = files[0];
+                if (file.type.indexOf('image') === -1) {
+                    return;
+                }
+                var reader = new FileReader();
+                reader.readAsDataURL(file);
+                reader.onload = function (ev) {
+                    var img = new Image();
+                    img.src = ev.target.result;
+                    img.id = 'canvas-image-source';
+                    img.onload = function () {
+                        var imageElement = document.getElementById('canvas-image-source');
+                        imageElement.parentNode.replaceChild(img, imageElement);
+                        showImage();
+                    };
+                };
+            }
+            ev.preventDefault();
+        }
+    }
+)
+;
 
 var spinner;
 function showLoadingSpinner() {
     var canvasContainerDiv = document.getElementById('canvas-container');
-    spinnerOptions = {
-
-    };
+    spinnerOptions = {};
     spinner = new Spinner(spinnerOptions).spin(canvasContainerDiv);
 }
 
