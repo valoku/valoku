@@ -13,37 +13,19 @@
         <li class="name">
             <h1><a href="/">Paul</a></h1>
         </li>
-        <!-- Remove the class "menu-icon" to get rid of menu icon. Take out "Menu" to just have icon alone -->
         <li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
     </ul>
     <section class="top-bar-section">
         <!-- Right Nav Section -->
         <ul class="right">
             {% if not user.is_authenticated %}
-                <li class=""><a href="/register/">Register</a></li>
-                <li class=""><a href="/login/">Login</a></li>
+            <li class=""><a href="/register/">Register</a></li>
+            <li class=""><a href="/login/">Login</a></li>
             {% elif user.is_authenticated %}
-                <li class=""><a href="/images/">Images</a></li>
-                <li class=""><a href="/upload/">Upload</a></li>
-                <li class=""><a href="/logout/">Logout</a></li>
-            {% endif %}
-        <!--
-            <li class="has-dropdown">
-                <a href="#">Right Button Dropdown</a>
-                <ul class="dropdown">
-                    <li><a href="#">First link in dropdown</a></li>
-                    <li class="active"><a href="#">Active link in dropdown</a></li>
-                </ul>
-            </li>
-        -->
+            <li class=""><a href="/images/">Images</a></li>
+            <li class=""><a href="/upload/">Upload</a></li>
+            <li class=""><a href="/logout/">Logout</a></li>
         </ul>
-
-        <!--
-        Left Nav Section
-        <ul class="left">
-            <li><a href="#">Left Nav Button</a></li>
-        </ul>
-         -->
     </section>
 </nav>
 <!-- Top bar ends-->
@@ -53,16 +35,23 @@
     <div class="large-12 columns">
         <div class="panel" id="content">
 
-                Content should be filled by child!
+            <link rel="stylesheet" href="../vendor/dropzone/dropzone.css"/>
+            <form id="myDropzone" class="dropzone" action="todo">
+            </form>
+            <button id="submit-all" class="button right">
+                Submit all files
+            </button>
+            <script src="../vendor/dropzone/dropzone.js"></script>
+            <script src="../js/paul-upload.js"></script>
 
         </div>
     </div>
 </div>
-    <script src="../vendor/foundation/vendor/jquery.js"></script>
-    <script src="../vendor/foundation/foundation.min.js"></script>
-    <script src="../js/paul.caman.full.js"></script>
-    <script src="../vendor/spin.js"></script>
-    <script src="../js/paul.js"></script>
+<script src="../vendor/foundation/vendor/jquery.js"></script>
+<script src="../vendor/foundation/foundation.min.js"></script>
+<script src="../js/paul.caman.full.js"></script>
+<script src="../vendor/spin.js"></script>
+<script src="../js/paul.js"></script>
 <script>
     $(document).foundation();
 </script>
