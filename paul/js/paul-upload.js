@@ -2,6 +2,7 @@ Dropzone.options.myDropzone = {
     acceptedFiles: "image/*",
     // Prevents Dropzone from uploading dropped files immediately
     autoProcessQueue: false,
+    maxFiles: 1,
     maxFilesize: 3, // 3 MiB = 3.15MB (same limit is set on client side)
     init: function () {
         var submitButton = document.querySelector("#submit-all");
