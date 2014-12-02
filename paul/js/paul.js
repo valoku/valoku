@@ -1,7 +1,3 @@
-$(document).ready(function () {
-    showLoadingSpinner();
-});
-
 function showImage() {
     hideLoadingSpinner();
     var imageElement = document.getElementById('canvas-image-source');
