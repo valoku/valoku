@@ -5,14 +5,20 @@ body {
     background-repeat: no-repeat;
 }
 
+label {
+    color: white;
+}
+
 .top-bar {
     height: 65px;
     background-color: #333232;
+    -webkit-box-shadow: 0px 5px 5px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0px 5px 5px 0px rgba(0,0,0,0.75);
+    box-shadow: 0px 5px 5px 0px rgba(0,0,0,0.75);
 }
 
 #content {
-    background-color: rgba(255, 255, 255, 0.3);
-    margin-top: 10px;
+    background-color: rgba(255, 255, 255, 0.5);
     overflow: auto;
     border: 1px #CCCCCC;
 }
@@ -59,6 +65,11 @@ button {
     display: block;
     max-width: 100%;
     max-height: 500px;
+
+    /*Shadows*/
+    -webkit-box-shadow: 0px 5px 5px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0px 5px 5px 0px rgba(0,0,0,0.75);
+    box-shadow: 0px 5px 5px 0px rgba(0,0,0,0.75);
 }
 
 .slider {
