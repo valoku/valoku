@@ -1,7 +1,8 @@
 body {
     background-image: url("../img/bgimage.jpg");
     background-position: center;
-    background-size: 100% auto;
+    background-color: #000000;
+    background-size: 1700px auto;
     background-repeat: no-repeat;
 }
 
@@ -54,11 +55,11 @@ button {
 }
 
 #canvas-container {
-    /*TODO set max height and width*/
-}
-
-#canvas-container {
     /*canvas-container size is modified in javascript*/
+    /*Shadows*/
+    -webkit-box-shadow: 0px 5px 5px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0px 5px 5px 0px rgba(0,0,0,0.75);
+    box-shadow: 0px 5px 5px 0px rgba(0,0,0,0.75);
 }
 
 #image-canvas {
@@ -70,11 +71,6 @@ button {
     display: block;
     max-width: 100%;
     max-height: 500px;
-
-    /*Shadows*/
-    -webkit-box-shadow: 0px 5px 5px 0px rgba(0,0,0,0.75);
-    -moz-box-shadow: 0px 5px 5px 0px rgba(0,0,0,0.75);
-    box-shadow: 0px 5px 5px 0px rgba(0,0,0,0.75);
 }
 
 .slider {
