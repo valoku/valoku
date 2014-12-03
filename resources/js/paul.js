@@ -171,8 +171,14 @@ $(window).load(setupDragAndDrop);
 var spinner;
 function showLoadingSpinner() {
     var canvasContainerDiv = document.getElementById('canvas-container');
-    spinnerOptions = {};
-    spinner = new Spinner(spinnerOptions).spin(canvasContainerDiv);
+    if (spinner != null) {
+        spinner.spin(canvasContainerDiv);
+    }
+    else {
+        spinnerOptions = {};
+        spinner = new Spinner(spinnerOptions).spin(canvasContainerDiv);
+    }
+
 }
 
 function hideLoadingSpinner() {
