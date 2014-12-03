@@ -20,7 +20,7 @@ label {
 }
 
 .top-bar-section ul li > a {
-    height: 100%;
+    height: 60px;
     font-size: 1rem;
 }
 
