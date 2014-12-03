@@ -31,7 +31,6 @@ function showImage() {
         var canvasId = canvasElement.id;
         var newCanvas = document.createElement("canvas");
         newCanvas.id = canvasId;
-//        canvasElement.parentNode.replaceChild(newCanvas, canvasElement);
 
         setCanvasInitSize();
         Caman(canvasContext.canvas, imageElement.src, function () {
@@ -49,15 +48,16 @@ function showImage() {
     }
 
     function applyFilters() {
+        showLoadingSpinner();
         Caman(canvasContext.canvas, function () {
             this.revert(false);
             setContextFilters(this);
-            this.render();
+            this.render(hideLoadingSpinner);
         });
     }
 
     function setCanvasInitSize() {
-        var maxCanvasWidth = 900;
+        var maxCanvasWidth = 750;
         var canvasWidth = maxCanvasWidth;
         var canvasHeight = imageElement.naturalHeight / (imageElement.naturalWidth / canvasWidth);
         canvasContainer.width = canvasWidth;
