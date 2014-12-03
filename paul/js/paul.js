@@ -3,6 +3,7 @@ function showImage() {
     var imageElement = document.getElementById('canvas-image-source');
     if (imageElement == null) return;
     var canvasContainer = document.getElementById('canvas-container');
+    var canvasElement = document.getElementById('image-canvas');
     var canvasContext = document.getElementById('image-canvas').getContext('2d');
     drawImage();
 
@@ -27,9 +28,15 @@ function showImage() {
     }
 
     function drawImage() {
+        var canvasId = canvasElement.id;
+        var newCanvas = document.createElement("canvas");
+        newCanvas.id = canvasId;
+//        canvasElement.parentNode.replaceChild(newCanvas, canvasElement);
+
         setCanvasInitSize();
         Caman(canvasContext.canvas, imageElement.src, function () {
-//            this.revert(false);
+            this.replaceCanvas(newCanvas);
+            this.reset();
             if (canvasContext.canvas != null) {
                 this.resize({
                     width: canvasContainer.width,
@@ -104,7 +111,6 @@ function showImage() {
         //replaces the img element with canvas
         var imageElementClone = imageElement.cloneNode(true)
         Caman(imageElement, function () {
-            this.revert(false);
             setContextFilters(this);
             this.render(function () {
                 imageQuality = 0.5;
@@ -121,9 +127,10 @@ function showImage() {
         });
     }
 
+    setupDragAndDrop();
 }
 
-$(window).load(function () {
+function setupDragAndDrop() {
         var canvasContainer = document.getElementById('canvas-container');
 
         canvasContainer.addEventListener('dragover', function (evt) {
@@ -148,15 +155,15 @@ $(window).load(function () {
                     img.onload = function () {
                         var imageElement = document.getElementById('canvas-image-source');
                         imageElement.parentNode.replaceChild(img, imageElement);
-                        showImage();
+                        imageElement.onload = showImage();
                     };
                 };
             }
             ev.preventDefault();
         }
     }
-)
-;
+
+$(window).load(setupDragAndDrop);
 
 var spinner;
 function showLoadingSpinner() {
