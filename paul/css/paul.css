@@ -28,6 +28,12 @@ label {
     background-color: rgba(0, 0, 0, 0.7);
 }
 
+#editor {
+    display: none;
+    -webkit-transition-duration: 5s; /* Safari */
+    transition-duration: 5s;
+}
+
 #content {
     overflow: auto;
     border: 1px #CCCCCC;

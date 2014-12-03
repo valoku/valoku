@@ -113,9 +113,11 @@ function showImage() {
         Caman(imageElement, function () {
             setContextFilters(this);
             this.render(function () {
-                imageQuality = 0.5;
-                var image = this.toBase64("jpeg", imageQuality);
-                saveToServer(image);
+                var image = this.toBase64("jpeg");
+                var pom = document.createElement('a');
+                pom.setAttribute('href', image);
+                pom.setAttribute('download', "picture.png");
+                pom.click();
                 //We now remove the canvas element that took the place of the img
                 imageElement = document.getElementById("canvas-image-source");
                 imageElement.parentNode.removeChild(imageElement);
@@ -126,7 +128,6 @@ function showImage() {
             });
         });
     }
-
 }
 
 function setupDragAndDrop() {
@@ -160,7 +161,7 @@ function setupDragAndDrop() {
         var dropanywhere = document.getElementById("dropanywhere");
         var editor = document.getElementById("editor");
         dropanywhere.style.display = "none";
-        editor.style.display = "";
+        editor.style.display = "block";
         ev.preventDefault();
     }
 }
