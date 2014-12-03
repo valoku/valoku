@@ -22,6 +22,7 @@ label {
 .top-bar-section ul li > a {
     height: 60px;
     font-size: 1rem;
+    padding-top: 0;
 }
 
 .panel {
