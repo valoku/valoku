@@ -1,4 +1,4 @@
-<div style="text-align:center"><img src ="https://raw.githubusercontent.com/valoku/valoku/master/resources/img/valoku-logo-large.png" /></div>
+<div style="text-align:center" markdown="1"><img src ="https://raw.githubusercontent.com/valoku/valoku/master/resources/img/valoku-logo-large.png" /></div>
 
 ===================
 
