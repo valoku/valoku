@@ -113,11 +113,39 @@ function showImage() {
         Caman(imageElement, function () {
             setContextFilters(this);
             this.render(function () {
-                var image = this.toBase64("jpeg");
-                var pom = document.createElement('a');
-                pom.setAttribute('href', image);
-                pom.setAttribute('download', "picture.png");
-                pom.click();
+                // atob to base64_decode the data-URI
+                var base64_data = this.toBase64('jpeg');
+                var image_data = atob(base64_data.split(',')[1]);
+                // Use typed arrays to convert the binary data to a Blob
+                var arraybuffer = new ArrayBuffer(image_data.length);
+                var view = new Uint8Array(arraybuffer);
+                for (var i=0; i<image_data.length; i++) {
+                    view[i] = image_data.charCodeAt(i) & 0xff;
+                }
+                try {
+                    // This is the recommended method:
+                    var blob = new Blob([arraybuffer], {type: 'application/octet-stream'});
+                } catch (e) {
+                    // The BlobBuilder API has been deprecated in favour of Blob, but older
+                    // browsers don't know about the Blob constructor
+                    // IE10 also supports BlobBuilder, but since the `Blob` constructor
+                    //  also works, there's no need to add `MSBlobBuilder`.
+                    var bb = new (window.WebKitBlobBuilder || window.MozBlobBuilder);
+                    bb.append(arraybuffer);
+                    var blob = bb.getBlob('application/octet-stream'); // <-- Here's the Blob
+                }
+
+                // Use the URL object to create a temporary URL
+                var url = (window.webkitURL || window.URL).createObjectURL(blob);
+                //location.href = url; // <-- Download!
+                var a = document.createElement("a");
+                document.body.appendChild(a);
+                a.style = "display: none";
+                a.href = url;
+                a.download = "file.jpeg";
+                a.click();
+
+
                 //We now remove the canvas element that took the place of the img
                 imageElement = document.getElementById("canvas-image-source");
                 imageElement.parentNode.removeChild(imageElement);
@@ -155,14 +183,24 @@ function setupDragAndDrop() {
                     var imageElement = document.getElementById('canvas-image-source');
                     imageElement.parentNode.replaceChild(img, imageElement);
                     imageElement.onload = showImage();
+                    setEditorMode(true);
                 };
             };
         }
-        var dropanywhere = document.getElementById("dropanywhere");
-        var editor = document.getElementById("editor");
+        ev.preventDefault();
+    }
+}
+
+function setEditorMode(editorVisible) {
+    var dropanywhere = document.getElementById("dropanywhere");
+    var editor = document.getElementById("editor");
+    if (editorVisible) {
         dropanywhere.style.display = "none";
         editor.style.display = "block";
-        ev.preventDefault();
+    }
+    else {
+        dropanywhere.style.display = "block";
+        editor.style.display = "none";
     }
 }
 
