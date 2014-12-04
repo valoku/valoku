@@ -1,5 +1,4 @@
-<div style="text-align:center" markdown="1"><img src ="https://raw.githubusercontent.com/valoku/valoku/master/resources/img/valoku-logo-large.png" /></div>
-
+![Valoku Logo](https://raw.githubusercontent.com/valoku/valoku/master/resources/img/valoku-logo-large.png)
 ===================
 
 valoku is a lightweight web-based application for editing images.
