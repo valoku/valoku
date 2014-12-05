@@ -7,6 +7,12 @@ function showImage() {
     var canvasContext = document.getElementById('image-canvas').getContext('2d');
     drawImage();
 
+    var brightnessSlider = document.getElementById('brightness-slider');
+    var contrastSlider = document.getElementById('contrast-slider');
+    var saturationSlider = document.getElementById('saturation-slider');
+    var hueSlider = document.getElementById('hue-slider');
+    var vignetteSlider = document.getElementById('vignette-slider');
+
     function getDefaultFilters() {
         return {
             brightness: 0,
@@ -17,7 +23,13 @@ function showImage() {
         }
     }
 
+
+    function setSliderPositions() {
+        //TODO set slider positions based on camanfilters!
+    }
+
     var camanFilters = getDefaultFilters();
+    setSliderPositions();
 
     function setContextFilters(context) {
         context.brightness(camanFilters.brightness);
@@ -66,13 +78,6 @@ function showImage() {
         canvasContext.canvas.width = canvasWidth;
     }
 
-    var brightnessSlider = document.getElementById('brightness-slider');
-    var contrastSlider = document.getElementById('contrast-slider');
-    var saturationSlider = document.getElementById('saturation-slider');
-    var hueSlider = document.getElementById('hue-slider');
-    var vignetteSlider = document.getElementById('vignette-slider');
-
-
     brightnessSlider.onchange = onSliderInput;
     contrastSlider.onchange = onSliderInput;
     saturationSlider.onchange = onSliderInput;
@@ -119,7 +124,7 @@ function showImage() {
                 // Use typed arrays to convert the binary data to a Blob
                 var arraybuffer = new ArrayBuffer(image_data.length);
                 var view = new Uint8Array(arraybuffer);
-                for (var i=0; i<image_data.length; i++) {
+                for (var i = 0; i < image_data.length; i++) {
                     view[i] = image_data.charCodeAt(i) & 0xff;
                 }
                 try {
@@ -183,7 +188,7 @@ function setupDragAndDrop() {
                     var imageElement = document.getElementById('canvas-image-source');
                     imageElement.parentNode.replaceChild(img, imageElement);
                     imageElement.onload = showImage();
-                    setEditorMode(true);
+                    showEditor();
                 };
             };
         }
@@ -191,17 +196,19 @@ function setupDragAndDrop() {
     }
 }
 
-function setEditorMode(editorVisible) {
+function showEditor() {
     var dropanywhere = document.getElementById("dropanywhere");
     var editor = document.getElementById("editor");
-    if (editorVisible) {
-        dropanywhere.style.display = "none";
-        editor.style.display = "block";
-    }
-    else {
-        dropanywhere.style.display = "block";
-        editor.style.display = "none";
-    }
+    dropanywhere.style.display = "none";
+    editor.style.display = "block";
+}
+
+function showDropanywhere() {
+    var dropanywhere = document.getElementById("dropanywhere");
+    var editor = document.getElementById("editor");
+    dropanywhere.style.display = "block";
+    editor.style.display = "none";
+
 }
 
 $(window).load(setupDragAndDrop);
