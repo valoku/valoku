@@ -1,7 +1,5 @@
-function showImage() {
+function showImage(sourceImage) {
     hideLoadingSpinner();
-    var imageElement = document.getElementById('canvas-image-source');
-    if (imageElement == null) return;
     var canvasContainer = document.getElementById('canvas-container');
     var canvasElement = document.getElementById('image-canvas');
     var canvasContext = document.getElementById('image-canvas').getContext('2d');
@@ -41,7 +39,8 @@ function showImage() {
         newCanvas.id = canvasId;
 
         setCanvasInitSize();
-        Caman(canvasContext.canvas, imageElement.src, function () {
+
+        Caman(canvasContext.canvas, sourceImage.src, function () {
             this.replaceCanvas(newCanvas);
             this.reset();
             if (canvasContext.canvas != null) {
@@ -67,7 +66,7 @@ function showImage() {
     function setCanvasInitSize() {
         var maxCanvasWidth = 750;
         var canvasWidth = maxCanvasWidth;
-        var canvasHeight = imageElement.naturalHeight / (imageElement.naturalWidth / canvasWidth);
+        var canvasHeight = sourceImage.naturalHeight / (sourceImage.naturalWidth / canvasWidth);
         canvasContainer.width = canvasWidth;
         canvasContainer.height = canvasHeight;
         canvasContext.canvas.height = canvasHeight;
@@ -102,8 +101,8 @@ function showImage() {
 
     function saveButtonPressed() {
         showLoadingSpinner();
-        var imageElementClone = imageElement.cloneNode(true)
-        Caman(imageElementClone, function () {
+        var sourceImageClone = sourceImage.cloneNode(true)
+        Caman(sourceImageClone, function () {
             setContextFilters(this);
             this.render(function () {
                 var a = createDownloadLink(this);
@@ -134,11 +133,8 @@ function setupDragAndDrop() {
             reader.onload = function (ev) {
                 var img = new Image();
                 img.src = ev.target.result;
-                img.id = 'canvas-image-source';
                 img.onload = function () {
-                    var imageElement = document.getElementById('canvas-image-source');
-                    imageElement.parentNode.replaceChild(img, imageElement);
-                    imageElement.onload = showImage();
+                    showImage(img);
                     showEditor();
                 };
             };

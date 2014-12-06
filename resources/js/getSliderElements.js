@@ -1,4 +1,4 @@
-function getElements() {
+function getSliderElements() {
     return {
         brightness: document.getElementById('brightness-slider'),
         contrast: document.getElementById('contrast-slider'),
