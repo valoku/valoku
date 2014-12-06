@@ -1,5 +1,3 @@
-var getSliderElements = require("../getSliderElements")
-
 function showImage(sourceImage) {
     hideLoadingSpinner();
 
