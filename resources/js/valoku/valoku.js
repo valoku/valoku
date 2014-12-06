@@ -72,11 +72,11 @@ function showImage(sourceImage) {
 
     function resetButtonPressed() {
         camanFilters = getDefaultFilters();
-        brightnessSlider.value = camanFilters.brightness;
-        contrastSlider.value = camanFilters.contrast;
-        hueSlider.value = camanFilters.hue;
-        saturationSlider.value = camanFilters.saturation;
-        vignetteSlider.value = parseInt(camanFilters.saturation);
+        $.each(sliders, function(filterName) {
+            sliders[filterName].value = camanFilters[filterName];
+        })
+        //Override vignette slider value because of parseInt :(
+        sliders.vignette.value = parseInt(camanFilters.vignette);
         Foundation.utils.debounce(applyFilters(), 500);
     }
 
@@ -102,23 +102,6 @@ function imageDroppedCallback(file) {
     showEditor();
 }
 
-function getFileDroppedCallback(imageDroppedCallback) {
-    return function fileDroppedCallback(file) {
-        if (file.type.indexOf('image') === -1) {
-            return;
-        }
-        var reader = new FileReader();
-        reader.readAsDataURL(file);
-        reader.onload = function (ev) {
-            var img = new Image();
-            img.src = ev.target.result;
-            img.onload = function () {
-                imageDroppedCallback(img);
-            };
-        };
-    }
-}
-
 function showEditor() {
     var dropanywhere = document.getElementById("dropanywhere");
     var editor = document.getElementById("editor");
@@ -131,13 +114,12 @@ function showDropanywhere() {
     var editor = document.getElementById("editor");
     dropanywhere.style.display = "block";
     editor.style.display = "none";
-
 }
 
 $(window).load(onWindowLoaded);
 
 function onWindowLoaded() {
-    setupDragAndDrop(getFileDroppedCallback(imageDroppedCallback));
+    setupDragAndDrop(getValokuFileDroppedCallback(imageDroppedCallback));
 }
 
 var spinner;

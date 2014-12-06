@@ -1,6 +1,6 @@
-function createDownloadLink(context) {
+function createDownloadLink(camanContext) {
     // atob to base64_decode the data-URI
-    var base64_data = context.toBase64('jpeg');
+    var base64_data = camanContext.toBase64('jpeg');
     var image_data = atob(base64_data.split(',')[1]);
     // Use typed arrays to convert the binary data to a Blob
     var arraybuffer = new ArrayBuffer(image_data.length);
