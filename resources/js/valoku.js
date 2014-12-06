@@ -80,12 +80,7 @@ function showImage() {
     })
 
     function onSliderInput() {
-        mapSliderValuesToCamanFilterValues(camanFilters, sliders);
-        camanFilters.brightness = brightnessSlider.value;
-        camanFilters.contrast = parseInt(contrastSlider.value);
-        camanFilters.hue = hueSlider.value;
-        camanFilters.saturation = saturationSlider.value;
-        camanFilters.vignette = vignetteSlider.value + "%";
+        updateCamanFilters(camanFilters, sliders);
         Foundation.utils.debounce(applyFilters(), 500);
     }
 
