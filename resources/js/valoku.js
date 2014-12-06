@@ -74,8 +74,8 @@ function showImage(sourceImage) {
     }
 
     //Bind onSliderInput function to each slider onchange event
-    $.each(sliders, function(sliderName, sliderElement) {
-        sliderElement.onchange= onSliderInput;
+    $.each(sliders, function (sliderName, sliderElement) {
+        sliderElement.onchange = onSliderInput;
     })
 
     function onSliderInput() {
@@ -113,33 +113,25 @@ function showImage(sourceImage) {
     }
 }
 
-function setupDragAndDrop() {
+function imageDroppedCallback(file) {
+    showImage(file);
+    showEditor();
+}
 
-    document.body.addEventListener('dragover', function (evt) {
-        evt.preventDefault();
-    }, false);
-
-    document.body.addEventListener('drop', fileDropped, false);
-
-    function fileDropped(ev) {
-        var files = ev.dataTransfer.files;
-        if (files.length > 0) {
-            var file = files[0];
-            if (file.type.indexOf('image') === -1) {
-                return;
-            }
-            var reader = new FileReader();
-            reader.readAsDataURL(file);
-            reader.onload = function (ev) {
-                var img = new Image();
-                img.src = ev.target.result;
-                img.onload = function () {
-                    showImage(img);
-                    showEditor();
-                };
-            };
+function getFileDroppedCallback(imageDroppedCallback) {
+    return function fileDroppedCallback(file) {
+        if (file.type.indexOf('image') === -1) {
+            return;
         }
-        ev.preventDefault();
+        var reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onload = function (ev) {
+            var img = new Image();
+            img.src = ev.target.result;
+            img.onload = function () {
+                imageDroppedCallback(img);
+            };
+        };
     }
 }
 
@@ -158,7 +150,11 @@ function showDropanywhere() {
 
 }
 
-$(window).load(setupDragAndDrop);
+$(window).load(onWindowLoaded);
+
+function onWindowLoaded() {
+    setupDragAndDrop(getFileDroppedCallback(imageDroppedCallback));
+}
 
 var spinner;
 function showLoadingSpinner() {
