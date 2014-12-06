@@ -1,22 +1,12 @@
 function showImage(sourceImage) {
     hideLoadingSpinner();
+
     var canvasContainer = document.getElementById('canvas-container');
     var canvasElement = document.getElementById('image-canvas');
     var canvasContext = document.getElementById('image-canvas').getContext('2d');
-    drawImage();
-
     var sliders = getSliderElements();
 
-    function getDefaultFilters() {
-        return {
-            brightness: 0,
-            contrast: 0,
-            hue: 100,
-            saturation: 0,
-            vignette: "0%"
-        }
-    }
-
+    drawImage();
 
     function setSliderPositions() {
         //TODO set slider positions based on camanfilters!
@@ -25,13 +15,7 @@ function showImage(sourceImage) {
     var camanFilters = getDefaultFilters();
     setSliderPositions();
 
-    function setContextFilters(context) {
-        context.brightness(camanFilters.brightness);
-        context.contrast(camanFilters.contrast);
-        context.hue(camanFilters.hue);
-        context.saturation(camanFilters.saturation);
-        context.vignette(camanFilters.vignette);
-    }
+
 
     function drawImage() {
         var canvasId = canvasElement.id;
@@ -49,7 +33,7 @@ function showImage(sourceImage) {
                     height: canvasContainer.height
                 });
             }
-            setContextFilters(this);
+            setContextFilters(this, camanFilters);
             this.render();
         });
     }
@@ -58,7 +42,7 @@ function showImage(sourceImage) {
         showLoadingSpinner();
         Caman(canvasContext.canvas, function () {
             this.revert(false);
-            setContextFilters(this);
+            setContextFilters(this, camanFilters);
             this.render(hideLoadingSpinner);
         });
     }
@@ -103,7 +87,7 @@ function showImage(sourceImage) {
         showLoadingSpinner();
         var sourceImageClone = sourceImage.cloneNode(true)
         Caman(sourceImageClone, function () {
-            setContextFilters(this);
+            setContextFilters(this, camanFilters);
             this.render(function () {
                 var a = createDownloadLink(this);
                 a.click();
