@@ -7,11 +7,7 @@ function showImage() {
     var canvasContext = document.getElementById('image-canvas').getContext('2d');
     drawImage();
 
-    var brightnessSlider = document.getElementById('brightness-slider');
-    var contrastSlider = document.getElementById('contrast-slider');
-    var saturationSlider = document.getElementById('saturation-slider');
-    var hueSlider = document.getElementById('hue-slider');
-    var vignetteSlider = document.getElementById('vignette-slider');
+    var sliders = getSliderElements();
 
     function getDefaultFilters() {
         return {
@@ -78,13 +74,13 @@ function showImage() {
         canvasContext.canvas.width = canvasWidth;
     }
 
-    brightnessSlider.onchange = onSliderInput;
-    contrastSlider.onchange = onSliderInput;
-    saturationSlider.onchange = onSliderInput;
-    hueSlider.onchange = onSliderInput;
-    vignetteSlider.onchange = onSliderInput;
+    //Bind onSliderInput function to each slider onchange event
+    $.each(sliders, function(sliderName, sliderElement) {
+        sliderElement.onchange= onSliderInput;
+    })
 
     function onSliderInput() {
+        mapSliderValuesToCamanFilterValues(camanFilters, sliders);
         camanFilters.brightness = brightnessSlider.value;
         camanFilters.contrast = parseInt(contrastSlider.value);
         camanFilters.hue = hueSlider.value;
