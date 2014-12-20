@@ -2,8 +2,9 @@
  * Created by Niklas on 19.12.2014.
  */
 function ValokuUI() {
-    this.valokuCanvas;
+    var valokuCanvas;
     this.resetButton = document.getElementById('reset-button');
+    var saveButton = document.getElementById('save-button');
 
     function imageDroppedCallback(file) {
         showImage(file);
@@ -11,8 +12,8 @@ function ValokuUI() {
     }
 
     function showImage(file) {
-        this.valokuCanvas = new ValokuCanvas(file);
-        this.valokuCanvas.draw();
+        valokuCanvas = new ValokuCanvas(file);
+        valokuCanvas.draw();
     }
 
     fileDropListener = new FileDropListener(imageDroppedCallback, document.body);
@@ -25,7 +26,7 @@ function ValokuUI() {
     }
 
     function applyFilters() {
-        this.valokuCanvas.applyFilters();
+        valokuCanvas.applyFilters();
     }
 
     //Bind onSliderInput function to each slider onchange event
@@ -41,9 +42,24 @@ function ValokuUI() {
         camanFilters = getDefaultFilters();
         $.each(sliders, function (filterName) {
             sliders[filterName].value = camanFilters[filterName];
-        })
+        });
         //Override vignette slider value because of parseInt :(
         sliders.vignette.value = parseInt(camanFilters.vignette);
         Foundation.utils.debounce(applyFilters(), 500);
-    }
+    };
+
+    //Bind save button
+    saveButton.onclick = function() {
+        valokuCanvas.showLoadingSpinner();
+        var sourceImage = valokuCanvas.getSourceImage();
+        var sourceImageClone = sourceImage.cloneNode(true);
+        Caman(sourceImageClone, function () {
+            setContextFilters(this, camanFilters);
+            this.render(function () {
+                var a = createDownloadLink(this);
+                a.click();
+                valokuCanvas.hideLoadingSpinner();
+            });
+        });
+    };
 }

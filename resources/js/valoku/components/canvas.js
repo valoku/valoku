@@ -2,29 +2,31 @@
  * Created by Niklas on 19.12.2014.
  */
 function ValokuCanvas(sourceImageElement) {
-    this.container = document.getElementById('canvas-container');
-    this.element = document.getElementById('image-canvas');
-    this.context = document.getElementById('image-canvas').getContext('2d');
+    var container = document.getElementById('canvas-container');
+    var element = document.getElementById('image-canvas');
+    var context = document.getElementById('image-canvas').getContext('2d')
+    var spinnerOptions = {};
+    var spinner = new Spinner(spinnerOptions);
 
     this.initSize = function () {
         var maxCanvasWidth = 750;
         var canvasWidth = maxCanvasWidth;
         var canvasHeight = sourceImageElement.naturalHeight / (sourceImageElement.naturalWidth / canvasWidth);
-        this.container.width = canvasWidth;
-        this.container.height = canvasHeight;
-        this.context.canvas.height = canvasHeight;
-        this.context.canvas.width = canvasWidth;
+        container.width = canvasWidth;
+        container.height = canvasHeight;
+        context.canvas.height = canvasHeight;
+        context.canvas.width = canvasWidth;
     };
 
     this.draw = function () {
         this.showLoadingSpinner();
-        var canvasId = this.element.id;
+        var canvasId = element.id;
         var newCanvas = document.createElement("canvas");
         newCanvas.id = canvasId;
         this.initSize();
-        canvas = this.context.canvas;
-        canvasContainer = this.container;
-        Caman(this.context.canvas, sourceImageElement.src, function () {
+        var canvas = context.canvas;
+        canvasContainer = container;
+        Caman(context.canvas, sourceImageElement.src, function () {
             this.replaceCanvas(newCanvas);
             this.reset();
             if (canvas != null) {
@@ -40,31 +42,29 @@ function ValokuCanvas(sourceImageElement) {
     };
 
     this.applyFilters = Foundation.utils.debounce(function () {
-        this.showLoadingSpinner();
-        canvas = this.context.canvas;
+        var canvas = context.canvas;
+        var onRenderStart = this.showLoadingSpinner;
+        var onRenderComplete = this.hideLoadingSpinner;
         Caman(canvas, function () {
+            onRenderStart();
             this.revert(false);
             setContextFilters(this, camanFilters);
-            this.render(renderCompleteCallback);
+            this.render(onRenderComplete);
         })
     }, 500);
 
-    function renderCompleteCallback() {
-        this.hideLoadingSpinner();
-    }
 
     this.showLoadingSpinner = function () {
-        var canvasContainerDiv = document.getElementById('canvas-container');
-        if (this.spinner != null) this.spinner.spin(canvasContainerDiv);
-        else {
-            spinnerOptions = {};
-            this.spinner = new Spinner(spinnerOptions).spin(canvasContainerDiv);
+        if (spinner != null) {
+            spinner.spin(container);
         }
     }
 
     this.hideLoadingSpinner = function () {
-        if (this.spinner) {
-            this.spinner.stop();
-        }
+        if (spinner) spinner.stop();
+    }
+
+    this.getSourceImage = function() {
+        return sourceImageElement;
     }
 }
