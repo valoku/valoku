@@ -1,12 +1,11 @@
-function createDownloadLink(camanContext) {
+function downloadBase64AsFile(base64, fileName) {
     // atob to base64_decode the data-URI
-    var base64_data = camanContext.toBase64('jpeg');
-    var image_data = atob(base64_data.split(',')[1]);
+    var fileData = atob(base64.split(',')[1]);
     // Use typed arrays to convert the binary data to a Blob
-    var arraybuffer = new ArrayBuffer(image_data.length);
+    var arraybuffer = new ArrayBuffer(fileData.length);
     var view = new Uint8Array(arraybuffer);
-    for (var i = 0; i < image_data.length; i++) {
-        view[i] = image_data.charCodeAt(i) & 0xff;
+    for (var i = 0; i < fileData.length; i++) {
+        view[i] = fileData.charCodeAt(i) & 0xff;
     }
     try {
         // This is the recommended method:
@@ -26,6 +25,6 @@ function createDownloadLink(camanContext) {
     document.body.appendChild(a);
     a.style = "display: none";
     a.href = url;
-    a.download = "file.jpeg";
-    return a;
+    a.download = fileName;
+    a.click();
 }

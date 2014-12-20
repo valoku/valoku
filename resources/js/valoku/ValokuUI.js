@@ -58,12 +58,12 @@ function ValokuUI() {
     saveButton.onclick = function () {
         valokuCanvas.showLoadingSpinner();
         var sourceImage = valokuCanvas.getSourceImage();
-        var sourceImageClone = sourceImage.cloneNode(true);
-        Caman(sourceImageClone, function () {
+        Caman(sourceImage, function () {
             setContextFilters(this, camanFilters);
             this.render(function () {
-                var a = createDownloadLink(this);
-                a.click();
+                var base64 = this.toBase64('jpeg');
+                var fileName = "image.jpeg";
+                downloadBase64AsFile(base64, fileName);
                 valokuCanvas.hideLoadingSpinner();
             });
         });
