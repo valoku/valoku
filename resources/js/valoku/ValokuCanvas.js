@@ -25,7 +25,7 @@ function ValokuCanvas(sourceImageElement) {
         newCanvas.id = canvasId;
         this.initSize();
         var canvas = context.canvas;
-        canvasContainer = container;
+        var canvasContainer = container;
         Caman(context.canvas, sourceImageElement.src, function () {
             this.replaceCanvas(newCanvas);
             this.reset();

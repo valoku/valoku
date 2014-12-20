@@ -3,8 +3,16 @@
  */
 function ValokuUI() {
     var valokuCanvas;
-    this.resetButton = document.getElementById('reset-button');
+    var fileDropListener = new FileDropListener(imageDroppedCallback, document.body);
+    var resetButton = document.getElementById('reset-button');
     var saveButton = document.getElementById('save-button');
+    var sliders = {
+        brightness: document.getElementById('brightness-slider'),
+        contrast: document.getElementById('contrast-slider'),
+        saturation: document.getElementById('saturation-slider'),
+        hue: document.getElementById('hue-slider'),
+        vignette: document.getElementById('vignette-slider'),
+    };
 
     function imageDroppedCallback(file) {
         showImage(file);
@@ -15,8 +23,6 @@ function ValokuUI() {
         valokuCanvas = new ValokuCanvas(file);
         valokuCanvas.draw();
     }
-
-    fileDropListener = new FileDropListener(imageDroppedCallback, document.body);
 
     function showEditor() {
         var dropanywhere = document.getElementById("dropanywhere");
@@ -38,7 +44,7 @@ function ValokuUI() {
     });
 
     //Bind reset button
-    this.resetButton.onclick = function () {
+    resetButton.onclick = function () {
         camanFilters = getDefaultFilters();
         $.each(sliders, function (filterName) {
             sliders[filterName].value = camanFilters[filterName];
@@ -49,7 +55,7 @@ function ValokuUI() {
     };
 
     //Bind save button
-    saveButton.onclick = function() {
+    saveButton.onclick = function () {
         valokuCanvas.showLoadingSpinner();
         var sourceImage = valokuCanvas.getSourceImage();
         var sourceImageClone = sourceImage.cloneNode(true);
