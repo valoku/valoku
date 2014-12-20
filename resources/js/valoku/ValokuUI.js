@@ -35,12 +35,14 @@ function ValokuUI() {
         valokuCanvas.applyFilters();
     }
 
+    var onSliderInput = Foundation.utils.debounce(function () {
+        updateFilters(camanFilters, sliders);
+        applyFilters();
+    }, 200);
+
     //Bind onSliderInput function to each slider onchange event
     $.each(sliders, function (sliderName, sliderElement) {
-        sliderElement.onchange = function () {
-            updateFilters(camanFilters, sliders);
-            applyFilters();
-        };
+        sliderElement.oninput = onSliderInput;
     });
 
     //Bind reset button
@@ -51,7 +53,7 @@ function ValokuUI() {
         });
         //Override vignette slider value because of parseInt :(
         sliders.vignette.value = parseInt(camanFilters.vignette);
-        Foundation.utils.debounce(applyFilters(), 500);
+        applyFilters();
     };
 
     //Bind save button

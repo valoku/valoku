@@ -8,6 +8,16 @@ function ValokuCanvas(sourceImageElement) {
     var spinnerOptions = {};
     var spinner = new Spinner(spinnerOptions);
 
+    this.showLoadingSpinner = function () {
+        if (spinner != null) {
+            spinner.spin(container);
+        }
+    }
+
+    this.hideLoadingSpinner = function () {
+        if (spinner) spinner.stop();
+    }
+
     this.initSize = function () {
         var maxCanvasWidth = 750;
         var canvasWidth = maxCanvasWidth;
@@ -41,30 +51,36 @@ function ValokuCanvas(sourceImageElement) {
         this.hideLoadingSpinner();
     };
 
-    this.applyFilters = Foundation.utils.debounce(function () {
+    var applyFiltersRunning = false;
+    var applyFiltersPending = false;
+
+    this.applyFilters = function() {
+        if (applyFiltersRunning) {
+            applyFitersPending = true;
+            return;
+        }
+        if (applyFiltersPending) {
+            applyFiltersPending = false;
+            applyFiltersRunning = true;
+        }
         var canvas = context.canvas;
-        var onRenderStart = this.showLoadingSpinner;
-        var onRenderComplete = this.hideLoadingSpinner;
+        this.showLoadingSpinner();
+        var hideLoadingSpinner = this.hideLoadingSpinner;
+        var onRenderComplete = function () {
+            hideLoadingSpinner();
+            applyFiltersRunning = false;
+            if (applyFiltersPending) {
+                this.applyFilters();
+            }
+        }
         Caman(canvas, function () {
-            onRenderStart();
             this.revert(false);
             setContextFilters(this, camanFilters);
             this.render(onRenderComplete);
-        })
-    }, 500);
-
-
-    this.showLoadingSpinner = function () {
-        if (spinner != null) {
-            spinner.spin(container);
-        }
+        });
     }
 
-    this.hideLoadingSpinner = function () {
-        if (spinner) spinner.stop();
-    }
-
-    this.getSourceImage = function() {
+    this.getSourceImage = function () {
         return sourceImageElement;
     }
 }
