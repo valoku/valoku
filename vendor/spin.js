@@ -138,7 +138,7 @@
   // Built-in defaults
 
   var defaults = {
-    lines: 12,            // The number of lines to draw
+    lines: 12,            // The number of lines to initCanvas
     length: 7,            // The length of each line
     width: 5,             // The line thickness
     radius: 10,           // The radius of the inner circle

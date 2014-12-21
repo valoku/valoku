@@ -95,6 +95,23 @@ button {
     box-shadow: 0px 5px 5px 0px rgba(0, 0, 0, 0.75);
 }
 
+#image-preview-canvas {
+    /*image-canvas size is also modified in javascript*/
+    padding-left: 0;
+    padding-right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    max-width: 100%;
+    max-height: 500px;
+
+    /*canvas-container size is modified in javascript*/
+    /*Shadows*/
+    -webkit-box-shadow: 0px 5px 5px 0px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 0px 5px 5px 0px rgba(0, 0, 0, 0.75);
+    box-shadow: 0px 5px 5px 0px rgba(0, 0, 0, 0.75);
+}
+
 .slider {
     width: 100%;
 }

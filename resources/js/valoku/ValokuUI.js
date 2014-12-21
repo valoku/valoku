@@ -21,7 +21,7 @@ function ValokuUI() {
 
     function showImage(file) {
         valokuCanvas = new ValokuCanvas(file);
-        valokuCanvas.draw();
+        valokuCanvas.initCanvas();
     }
 
     function showEditor() {
@@ -32,17 +32,18 @@ function ValokuUI() {
     }
 
     function applyFilters() {
-        valokuCanvas.applyFilters();
+        valokuCanvas.applyPreviewFilters();
+//        valokuCanvas.applyFilters();
     }
 
     var onSliderInput = Foundation.utils.debounce(function () {
         updateFilters(camanFilters, sliders);
         applyFilters();
-    }, 200);
+    }, 100);
 
     //Bind onSliderInput function to each slider onchange event
     $.each(sliders, function (sliderName, sliderElement) {
-        sliderElement.oninput = onSliderInput;
+        sliderElement.onchange = onSliderInput;
     });
 
     //Bind reset button
