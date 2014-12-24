@@ -31,19 +31,20 @@ function ValokuUI() {
         editor.style.display = "block";
     }
 
-    function applyFilters() {
-        valokuCanvas.applyPreviewFilters();
-//        valokuCanvas.applyFilters();
-    }
-
     var onSliderInput = Foundation.utils.debounce(function () {
         updateFilters(camanFilters, sliders);
-        applyFilters();
+        valokuCanvas.applyPreviewFilters();
     }, 100);
+
+    var onSliderChange = Foundation.utils.debounce(function () {
+        updateFilters(camanFilters, sliders);
+        valokuCanvas.applyFilters();
+    }, 500);
 
     //Bind onSliderInput function to each slider onchange event
     $.each(sliders, function (sliderName, sliderElement) {
-        sliderElement.onchange = onSliderInput;
+        sliderElement.oninput = onSliderInput;
+        sliderElement.onchange = onSliderChange;
     });
 
     //Bind reset button
@@ -54,7 +55,7 @@ function ValokuUI() {
         });
         //Override vignette slider value because of parseInt :(
         sliders.vignette.value = parseInt(camanFilters.vignette);
-        applyFilters();
+        valokuCanvas.applyFilters();
     };
 
     //Bind save button

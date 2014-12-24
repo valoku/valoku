@@ -23,7 +23,7 @@ function ValokuCanvas(sourceImageElement) {
     };
 
     this.initSize = function () {
-        var maxCanvasWidth = 750;
+        var maxCanvasWidth = 800;
         var canvasWidth = maxCanvasWidth;
         var canvasHeight = sourceImageElement.naturalHeight / (sourceImageElement.naturalWidth / canvasWidth);
         container.width = canvasWidth;
@@ -58,7 +58,7 @@ function ValokuCanvas(sourceImageElement) {
         newCanvas.id = canvasId;
         var canvas = previewContext.canvas;
         var sourceImageElementClone = sourceImageElement.cloneNode();
-        sourceImageElementClone.height = 100;
+        sourceImageElementClone.height = 250;
         sourceImageElementClone.width = (sourceImageElement.width * sourceImageElementClone.height) / sourceImageElement.height;
         Caman(previewContext.canvas, sourceImageElementClone.src, function () {
             this.replaceCanvas(newCanvas);
@@ -95,14 +95,14 @@ function ValokuCanvas(sourceImageElement) {
             applyFiltersRunning = true;
         }
         var canvas = context.canvas;
-        this.showLoadingSpinner();
+//        this.showLoadingSpinner();
         var hideLoadingSpinner = this.hideLoadingSpinner;
         var that = this;
         var onRenderComplete = function () {
             hideLoadingSpinner();
             applyFiltersRunning = false;
             if (applyFiltersPending) this.applyFilters();
-            that.hidePreview();
+            if (!applyPreviewFiltersRunning)that.hidePreview();
         };
         Caman(canvas, function () {
             this.revert(false);
@@ -115,34 +115,36 @@ function ValokuCanvas(sourceImageElement) {
     var applyPreviewFiltersPending = false;
 
     this.applyPreviewFilters = function () {
-        if (applyPreviewFiltersRunning) {
+        if (applyPreviewFiltersRunning && !applyPreviewFiltersPending) {
             applyPreviewFiltersPending = true;
             return;
         }
         if (applyPreviewFiltersPending) {
             applyPreviewFiltersPending = false;
-            applyPreviewFiltersRunning = true;
         }
+        applyPreviewFiltersRunning = true;
         var canvas = previewContext.canvas;
         var that = this;
 
         var onRenderComplete = function () {
-            that.showPreview();
+
             applyPreviewFiltersRunning = false;
-            if (applyFiltersPending) {
-                this.applyPreviewFilters();
+            if (applyFiltersPending || applyPreviewFiltersPending) {
+                that.applyPreviewFilters();
                 return;
             }
-            that.applyFilters();
+            that.showPreview();
+
+//            that.applyFilters();
         };
-        var sourceWidth = 100;
-        var sourceHeight = (this.sourceWidth * 100) / this.sourceHeight;
+        var previewHeight = 200;
+        var previewWidth = (this.sourceWidth * previewHeight) / this.sourceHeight;
         Caman(canvas, function () {
-                this.revert();
-                this.resize({
-                    height : sourceWidth,
-                    width : sourceHeight
-                    });
+                this.revert(false);
+//                this.resize({
+//                    width: previewWidth,
+//                    height: previewHeight
+//                });
                 setContextFilters(this, camanFilters);
                 this.render(onRenderComplete);
             }
@@ -155,20 +157,9 @@ function ValokuCanvas(sourceImageElement) {
         document.getElementById("image-canvas").style.display = "none";
         document.getElementById("image-preview-canvas").style.display = "block";
         var canvas = document.getElementById("image-preview-canvas");
-//        var data= canvas.toDataURL();
+//        canvas.style.height = document.getElementById("image-canvas").getContext('2d').canvas.height;
+          canvas.style.height = 800;
 
-        // resize the canvas
-        canvas.style.width = document.getElementById("image-canvas").getContext('2d').canvas.width;
-        canvas.style.height =document.getElementById("image-canvas").getContext('2d').canvas.height;
-//
-//        // scale and redraw the canvas content
-//        var img=new Image();
-//        img.onload=function(){
-//            canvas.getContext('2d').drawImage(img,0,0,img.width,img.height,0,0,canvas.width,canvas.height);
-//        }
-//        img.src=data;
-//        canvas.getContext('2d').width = document.getElementById("image-canvas").getContext('2d').canvas.width;
-//        canvas.getContext('2d').height = document.getElementById("image-canvas").getContext('2d').canvas.height;
     }
 
     this.hidePreview = function () {
